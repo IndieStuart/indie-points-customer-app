@@ -15,11 +15,6 @@ function AppContent() {
     // Detect when user logs out (session goes from truthy to null)
     if (prevSession && !session && !loading) {
       setShowLogoutPage(true);
-      // Redirect to login after 2 seconds
-      const timer = setTimeout(() => {
-        setShowLogoutPage(false);
-      }, 2000);
-      return () => clearTimeout(timer);
     }
     setPrevSession(session);
   }, [session, loading, prevSession]);
@@ -33,7 +28,7 @@ function AppContent() {
   }
 
   if (showLogoutPage) {
-    return <LogoutPage />;
+    return <LogoutPage onSignInAgain={() => setShowLogoutPage(false)} />;
   }
 
   if (!session) {

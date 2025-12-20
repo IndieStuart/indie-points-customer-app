@@ -34,8 +34,8 @@ export const colors = {
 
   // Border Colors
   border: {
-    default: '#4A5568',
-    dark: 'rgba(0, 0, 0, 0.4)',
+    default: 'rgba(0, 0, 0, 0.08)',
+    dark: 'rgba(0, 0, 0, 0.12)',
   },
 
   // Overlay Colors
@@ -103,15 +103,15 @@ export const shadows = {
   medium: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
     elevation: 5,
   },
   large: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
     elevation: 8,
   },
   button: {
