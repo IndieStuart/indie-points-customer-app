@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { colors, spacing, borderRadius, shadows, typography, sizes } from '../constants/theme';
+import { colors, spacing, borderRadius, shadows, typography, sizes, getIconColor } from '../constants/theme';
 
 interface CardProps {
   title: string;
@@ -10,16 +10,10 @@ interface CardProps {
 }
 
 export function Card({ title, description, iconColor, style }: CardProps) {
-  const iconColorStyle = iconColor === 'blue' 
-    ? styles.blueIcon 
-    : iconColor === 'yellow' 
-    ? styles.yellowIcon 
-    : styles.redIcon;
-
   return (
     <View style={[styles.card, style]}>
       <View style={styles.cardInner}>
-        <View style={[styles.iconBox, iconColorStyle]}>
+        <View style={[styles.iconBox, { backgroundColor: getIconColor(iconColor) }]}>
           <View style={styles.iconGlow} />
         </View>
         <View style={styles.cardContent}>
@@ -34,21 +28,21 @@ export function Card({ title, description, iconColor, style }: CardProps) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.background.card,
-    borderRadius: borderRadius.xxl,
-    ...shadows.medium,
+    borderRadius: borderRadius.xl,
+    ...shadows.md,
     borderWidth: 2,
     borderColor: colors.border.default,
   },
   cardInner: {
     flexDirection: 'row',
-    padding: spacing.md + spacing.xs, // 16
+    padding: spacing.lg,
   },
   iconBox: {
     width: sizes.icon.md,
     height: sizes.icon.md,
-    borderRadius: borderRadius.xl,
-    marginRight: spacing.sm + spacing.xs, // 12
-    ...shadows.large,
+    borderRadius: borderRadius.lg,
+    marginRight: spacing.md,
+    ...shadows.lg,
     borderWidth: 2,
     borderColor: colors.border.dark,
   },
@@ -57,16 +51,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: colors.overlay.light,
-    borderRadius: borderRadius.xl,
-  },
-  blueIcon: {
-    backgroundColor: colors.primary.blue,
-  },
-  yellowIcon: {
-    backgroundColor: colors.primary.yellow,
-  },
-  redIcon: {
-    backgroundColor: colors.primary.red,
+    borderRadius: borderRadius.lg,
   },
   cardContent: {
     flex: 1,
@@ -75,11 +60,11 @@ const styles = StyleSheet.create({
     fontSize: typography.fontSize.lg,
     fontWeight: typography.fontWeight.bold,
     color: colors.text.dark,
-    marginBottom: spacing.xs + 1, // 5
+    marginBottom: spacing.sm,
   },
   cardDescription: {
-    fontSize: typography.fontSize.md,
+    fontSize: typography.fontSize.sm,
     color: colors.text.medium,
-    lineHeight: typography.lineHeight.normal,
+    lineHeight: typography.lineHeight.md,
   },
 });

@@ -44,82 +44,66 @@ export const colors = {
   },
 };
 
-// Spacing Scale (consistent increments)
+// Spacing Scale
 export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 12,
-  lg: 16,
-  xl: 20,
-  xxl: 24,
-  xxxl: 32,
-  xxxxl: 40,
+  sm: 4,    // Small - tight spacing
+  md: 12,   // Medium - standard gaps/margins
+  lg: 20,   // Large - section spacing
+  xl: 40,   // Extra Large - top padding
 };
 
 // Typography
 export const typography = {
   fontSize: {
-    xs: 12,
-    sm: 14,
-    md: 15,
-    base: 16,
-    lg: 20,
-    xl: 24,
-    xxl: 32,
-    xxxl: 42,
+    sm: 14,   // Small text
+    md: 16,   // Body text
+    lg: 20,   // Subheadings
+    xl: 24,   // Headings
+    xxl: 42,  // Page titles
   },
   fontWeight: {
     normal: '400' as const,
-    medium: '500' as const,
     semibold: '600' as const,
     bold: '700' as const,
     extrabold: '800' as const,
   },
   lineHeight: {
-    tight: 18,
-    normal: 22,
-    relaxed: 28,
+    sm: 18,
+    md: 22,
+    lg: 28,
   },
 };
 
 // Border Radius
 export const borderRadius = {
-  sm: 6,
-  md: 12,
-  lg: 14,
-  xl: 16,
-  xxl: 20,
+  sm: 6,    // Small - bars, chips
+  md: 14,   // Medium - buttons
+  lg: 16,   // Large - icons
+  xl: 20,   // Extra Large - cards
 };
 
-// Shadows (platform-specific)
+// Shadows
 export const shadows = {
-  small: {
+  sm: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.12,
     shadowRadius: 4,
     elevation: 3,
   },
-  medium: {
+  md: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.12,
     shadowRadius: 16,
     elevation: 5,
   },
-  large: {
+  lg: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.18,
     shadowRadius: 12,
     elevation: 8,
-  },
-  button: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 6,
   },
 };
 
@@ -136,4 +120,16 @@ export const sizes = {
   bar: {
     height: 14,
   },
+};
+
+// Helper Functions
+export const getIconColor = (color: 'blue' | 'yellow' | 'red'): string => {
+  switch (color) {
+    case 'blue':
+      return colors.primary.blue;
+    case 'yellow':
+      return colors.primary.yellow;
+    case 'red':
+      return colors.primary.red;
+  }
 };

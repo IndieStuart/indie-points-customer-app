@@ -25,18 +25,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: spacing.xl,
+    padding: spacing.lg,
     backgroundColor: colors.background.primary,
   },
   title: {
     fontSize: typography.fontSize.xl,
     fontWeight: typography.fontWeight.bold,
     color: colors.text.dark,
-    marginBottom: spacing.xl,
+    marginBottom: spacing.lg,
   },
   text: {
-    fontSize: typography.fontSize.base,
+    fontSize: typography.fontSize.md,
     color: colors.text.medium,
-    marginBottom: spacing.xl,
+    marginBottom: spacing.lg,
   },
 });
