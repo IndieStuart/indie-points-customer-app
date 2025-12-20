@@ -1,20 +1,42 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
+import { colors, spacing, typography } from '../constants/theme';
 
 export default function HomePage() {
   const { session, signOut } = useAuth();
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Home</Text>
-      <Text style={{ marginBottom: 20 }}>
+    <View style={styles.container}>
+      <Text style={styles.title}>Home</Text>
+      <Text style={styles.text}>
         Welcome! You are logged in.
       </Text>
       {session?.user?.email && (
-        <Text style={{ marginBottom: 20 }}>Email: {session.user.email}</Text>
+        <Text style={styles.text}>Email: {session.user.email}</Text>
       )}
       <Button title="Sign Out" onPress={signOut} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: spacing.xl,
+    backgroundColor: colors.background.primary,
+  },
+  title: {
+    fontSize: typography.fontSize.xl,
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.dark,
+    marginBottom: spacing.xl,
+  },
+  text: {
+    fontSize: typography.fontSize.base,
+    color: colors.text.medium,
+    marginBottom: spacing.xl,
+  },
+});
