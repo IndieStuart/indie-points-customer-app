@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import { AuthProvider, useAuth, ThemeProvider, useTheme } from './hooks';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import BottomTabNavigator from './components/BottomTabNavigator';

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Session } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import { supabase } from '../lib/supabase';
 
 type AuthContextType = {
   session: Session | null;

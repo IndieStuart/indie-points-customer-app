@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLORS, TYPOGRAPHY, SPACING } from '../constants/theme';
 import { ColorBar } from './';
-import Columns from './Columns';
+import Flex from './Flex';
 
 interface PageHeaderProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
 }
 
 export default function PageHeader({ 
@@ -16,28 +16,27 @@ export default function PageHeader({
   return (
     <View>
       <Text style={styles.title}>{title}</Text>
-      <Columns columns={3} gap={8}>
-        <ColorBar color="blue" />
-        <ColorBar color="yellow" />
-        <ColorBar color="red" />
-      </Columns>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      <Flex direction="row" columns={3} gap={8}>
+        <ColorBar variant="blue" />
+        <ColorBar variant="yellow" />
+        <ColorBar variant="red" />
+      </Flex>
+      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   title: {
+    ...TYPOGRAPHY.h1,
     color: COLORS.black,
-    fontSize: 48,
-    fontWeight: 'bold',
-    marginTop: 30,
+    marginTop: SPACING.xl,
     textAlign: 'center',
   },
   subtitle: {
+    ...TYPOGRAPHY.h2,
     color: COLORS.gray,
-    fontSize: 20,
-    margin: 12,
+    margin: SPACING.md,
     textAlign: 'center',
   },
 });

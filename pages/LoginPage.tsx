@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
-import { Alert } from 'react-native';
-import { useAuth } from '../contexts/AuthContext';
-import { Card, ErrorMessage, PageContainer, PageHeader, CardList, AppleSignInButton } from '../components';
+import React from 'react';
+import { Card, ErrorMessage, PageContainer, PageHeader, Flex, AppleSignInButton } from '../components';
+import { useAuth, useAuthError } from '../hooks';
 
 export default function LoginPage() {
   const { signInWithApple } = useAuth();
-  const [error, setError] = useState<string | null>(null);
+  const { error, isLoading, withLoading } = useAuthError();
 
   const handleAppleSignIn = async () => {
-    try {
-      setError(null);
-      await signInWithApple();
-    } catch (err: any) {
-      const errorMessage = err.message || 'Failed to sign in';
-      setError(errorMessage);
-      Alert.alert('Sign In Error', errorMessage);
-    }
+    await withLoading(() => signInWithApple());
   };
 
   return (
@@ -24,25 +16,25 @@ export default function LoginPage() {
         title="Indie Points"
         subtitle="Earn points, redeem rewards, support local businesses"
       />
-      <CardList>
+      <Flex>
         <Card 
           title="Earn points" 
           description="Get points for every purchase at participating businesses"
-          iconColor="blue"
+          variant="blue"
         />
         <Card 
           title="Redeem rewards" 
           description="Use your points to get discounts and free items"
-          iconColor="yellow"
+          variant="yellow"
         />
         <Card 
           title="Support local" 
           description="Help your favorite local businesses grow and thrive"
-          iconColor="red"
+          variant="red"
         />
-      </CardList>
+      </Flex>
       {error && <ErrorMessage message={error} />}
-      <AppleSignInButton onPress={handleAppleSignIn} />
+      <AppleSignInButton onPress={handleAppleSignIn} loading={isLoading} />
     </PageContainer>
   );
 }

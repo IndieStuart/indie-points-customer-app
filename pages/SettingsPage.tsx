@@ -1,6 +1,6 @@
 import React from 'react';
-import { PageContainer, PageHeader, IconButton } from '../components';
-import { useAuth } from '../contexts/AuthContext';
+import { PageContainer, PageHeader, Button } from '../components';
+import { useAuth } from '../hooks';
 
 export default function SettingsPage() {
   const { signOut } = useAuth();
@@ -9,13 +9,14 @@ export default function SettingsPage() {
     <PageContainer>
       <PageHeader 
         title="Settings"
-        subtitle=""
+        subtitle="Manage your account"
       />
       
-      <IconButton 
+      <Button 
         label="Sign Out"
         onPress={signOut}
         variant="black"
+        accessibilityLabel="Sign out of your account"
       />
     </PageContainer>
   );

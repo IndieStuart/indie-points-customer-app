@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContainer, PageHeader, PointsSummaryCard, FeedbackCard, PointsRow } from '../components';
+import { PageContainer, PageHeader, PointsSummaryCard, FeedbackCard, Flex } from '../components';
 
 export default function HomePage() {
   return (
@@ -11,21 +11,21 @@ export default function HomePage() {
       <PointsSummaryCard
         label="Active points"
         value={1}
-        color="blue"
+        variant="blue"
         spaced
       />
-      <PointsRow>
+      <Flex direction="row">
         <PointsSummaryCard
           label="Total earned"
           value={1}
-          color="yellow"
+          variant="yellow"
         />
         <PointsSummaryCard
           label="Total redeemed"
           value={0}
-          color="red"
+          variant="red"
         />
-      </PointsRow>
+      </Flex>
       <FeedbackCard />
     </PageContainer>
   );

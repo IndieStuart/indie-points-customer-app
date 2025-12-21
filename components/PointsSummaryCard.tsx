@@ -1,63 +1,48 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLOR_VARIANTS, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
 
 interface PointsSummaryCardProps {
   label: string;
   value: number | string;
-  color: 'blue' | 'yellow' | 'red';
+  variant: ColorVariant;
   spaced?: boolean;
 }
 
 export default function PointsSummaryCard({ 
   label, 
   value, 
-  color,
+  variant,
   spaced = false,
 }: PointsSummaryCardProps) {
   return (
     <View style={[styles.container, spaced && styles.spaced]}>
-      <View style={[styles.colorPill, { backgroundColor: colorMap[color] }]} />
+      <View style={[styles.colorPill, { backgroundColor: COLOR_VARIANTS[variant] }]} />
       <Text style={styles.label}>{label}</Text>
       <Text style={styles.value}>{value}</Text>
     </View>
   );
 }
 
-const colorMap = {
-  blue: COLORS.blue,
-  yellow: COLORS.yellow,
-  red: COLORS.red,
-};
-
 const styles = StyleSheet.create({
   container: {
+    ...CARD_STYLES.container,
     alignItems: 'flex-start',
-    backgroundColor: COLORS.background,
-    borderColor: COLORS.border,
-    borderRadius: 12,
-    borderWidth: 2,
-    elevation: 6,
     flex: 1,
-    padding: 12,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.18,
-    shadowRadius: 10,
+    padding: SPACING.md,
   },
   spaced: {
-    marginBottom: 12,
+    marginBottom: SPACING.lg,
   },
   colorPill: {
-    borderRadius: 6,
+    borderRadius: BORDER_RADIUS.sm,
     height: 8,
-    marginBottom: 8,
+    marginBottom: SPACING.sm,
     width: '100%',
   },
   label: {
-    color: COLORS.muted,
-    fontSize: 14,
-    marginBottom: 4,
+    ...TYPOGRAPHY.captionMuted,
+    marginBottom: SPACING.xs,
   },
   value: {
     fontSize: 22,

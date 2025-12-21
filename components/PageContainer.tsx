@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
+import { SPACING } from '../constants/theme';
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -18,6 +19,6 @@ export default function PageContainer({ children }: PageContainerProps) {
 
 const styles = StyleSheet.create({
   content: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.xl,
   },
 });

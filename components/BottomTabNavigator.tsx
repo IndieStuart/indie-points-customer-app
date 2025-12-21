@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import * as Haptics from 'expo-haptics';
+import { useHapticFeedback } from '../hooks';
 
 // Import pages
 import HomePage from '../pages/HomePage';
@@ -13,6 +13,21 @@ import SettingsPage from '../pages/SettingsPage';
 
 const Tab = createBottomTabNavigator();
 
+type TabConfig = {
+  name: string;
+  component: React.ComponentType<any>;
+  icon: React.ComponentProps<typeof FontAwesome>['name'];
+  title: string;
+};
+
+const TAB_SCREENS: TabConfig[] = [
+  { name: 'Home', component: HomePage, icon: 'home', title: 'Home' },
+  { name: 'Points', component: PointsPage, icon: 'gift', title: 'Points' },
+  { name: 'Scan', component: ScanPage, icon: 'camera', title: 'Scan' },
+  { name: 'History', component: HistoryPage, icon: 'file-text-o', title: 'History' },
+  { name: 'Settings', component: SettingsPage, icon: 'cog', title: 'Settings' },
+];
+
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
@@ -21,78 +36,29 @@ function TabBarIcon(props: {
 }
 
 export default function BottomTabNavigator() {
+  const { triggerSelection } = useHapticFeedback();
+
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={({ route }) => ({
+        screenOptions={{
           headerShown: false,
-        })}
+        }}
       >
-        <Tab.Screen
-          component={HomePage}
-          name="Home"
-          options={{
-            title: 'Home',
-            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          }}
-          listeners={{
-            tabPress: () => {
-              Haptics.selectionAsync();
-            },
-          }}
-        />
-        <Tab.Screen
-          component={PointsPage}
-          name="Points"
-          options={{
-            title: 'Points',
-            tabBarIcon: ({ color }) => <TabBarIcon name="gift" color={color} />,
-          }}
-          listeners={{
-            tabPress: () => {
-              Haptics.selectionAsync();
-            },
-          }}
-        />
-        <Tab.Screen
-          component={ScanPage}
-          name="Scan"
-          options={{
-            title: 'Scan',
-            tabBarIcon: ({ color }) => <TabBarIcon name="camera" color={color} />,
-          }}
-          listeners={{
-            tabPress: () => {
-              Haptics.selectionAsync();
-            },
-          }}
-        />
-        <Tab.Screen
-          component={HistoryPage}
-          name="History"
-          options={{
-            title: 'History',
-            tabBarIcon: ({ color }) => <TabBarIcon name="file-text-o" color={color} />,
-          }}
-          listeners={{
-            tabPress: () => {
-              Haptics.selectionAsync();
-            },
-          }}
-        />
-        <Tab.Screen
-          component={SettingsPage}
-          name="Settings"
-          options={{
-            title: 'Settings',
-            tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
-          }}
-          listeners={{
-            tabPress: () => {
-              Haptics.selectionAsync();
-            },
-          }}
-        />
+        {TAB_SCREENS.map((tab) => (
+          <Tab.Screen
+            key={tab.name}
+            name={tab.name}
+            component={tab.component}
+            options={{
+              title: tab.title,
+              tabBarIcon: ({ color }) => <TabBarIcon name={tab.icon} color={color} />,
+            }}
+            listeners={{
+              tabPress: triggerSelection,
+            }}
+          />
+        ))}
       </Tab.Navigator>
     </NavigationContainer>
   );

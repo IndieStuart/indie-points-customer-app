@@ -1,16 +1,13 @@
 import React from 'react';
-import { Linking } from 'react-native';
-import { PageContainer, PageHeader, IconButton, InfoCard } from '../components';
+import { PageContainer, PageHeader, Button, InfoCard } from '../components';
+import { useFeedback } from '../hooks';
 
 interface LogoutPageProps {
   onSignInAgain?: () => void;
 }
 
 export default function LogoutPage({ onSignInAgain }: LogoutPageProps) {
-
-  const handleSendFeedback = () => {
-    Linking.openURL('mailto:hello@indiepoints.com?subject=Feedback for Indie Points');
-  };
+  const { sendFeedback } = useFeedback();
 
   const handleSignInAgain = () => {
     onSignInAgain?.();
@@ -23,20 +20,22 @@ export default function LogoutPage({ onSignInAgain }: LogoutPageProps) {
         subtitle="Thanks for using Indie Points! We hope to see you again soon."
       />
       <InfoCard
-        icon="💬"
+        icon="comment"
         title="We'd love your feedback!"
         subtitle="Help us improve Indie Points"
       >
-        <IconButton 
+        <Button 
           label="Send Feedback"
-          onPress={handleSendFeedback}
+          onPress={sendFeedback}
           variant="primary"
+          accessibilityLabel="Send feedback to Indie Points"
         />
       </InfoCard>
-      <IconButton 
+      <Button 
         label="Sign In Again"
         onPress={handleSignInAgain}
         variant="black"
+        accessibilityLabel="Sign in again to your account"
       />
     </PageContainer>
   );

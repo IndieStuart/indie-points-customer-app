@@ -1,29 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLORS, COLOR_VARIANTS, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
 
 interface CardProps {
   title: string;
   description: string;
-  iconColor: 'blue' | 'yellow' | 'red';
+  variant: ColorVariant;
 }
 
-export function Card({ title, description, iconColor }: CardProps) {
-  const colorMap = {
-    blue: '#3182CE',
-    yellow: '#D69E2E',
-    red: '#E53E3E',
-  };
-
+export function Card({ title, description, variant }: CardProps) {
   return (
-    <View
-      style={styles.card}
-    >
+    <View style={styles.card}>
       <View style={styles.row}>
         <View
-          style={[styles.iconWrapper, { backgroundColor: colorMap[iconColor] }]}
+          style={[styles.iconWrapper, { backgroundColor: COLOR_VARIANTS[variant] }]}
         />
-
         <View style={styles.content}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.description}>{description}</Text>
@@ -34,43 +25,26 @@ export function Card({ title, description, iconColor }: CardProps) {
 }
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: COLORS.background,
-    borderColor: COLORS.border,
-    borderRadius: 12,
-    borderWidth: 2,
-    elevation: 6,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.18,
-    shadowRadius: 10,
-  },
+  card: CARD_STYLES.container,
   row: {
     alignItems: 'center',
     flexDirection: 'row',
   },
   iconWrapper: {
-    borderRadius: 12,
-    elevation: 3,
+    ...CARD_STYLES.iconBox,
+    borderRadius: BORDER_RADIUS.lg,
     height: 60,
-    marginRight: 12,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
-    shadowRadius: 4,
+    marginRight: SPACING.md,
     width: 60,
   },
   content: {
     flex: 1,
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    ...TYPOGRAPHY.h3,
+    marginBottom: SPACING.xs,
   },
   description: {
-    color: COLORS.muted,
-    fontSize: 14,
+    ...TYPOGRAPHY.captionMuted,
   },
 });

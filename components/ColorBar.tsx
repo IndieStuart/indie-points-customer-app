@@ -1,22 +1,16 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { COLORS } from '../constants/theme';
+import { COLOR_VARIANTS, CARD_STYLES, BORDER_RADIUS, type ColorVariant } from '../constants/theme';
 
 interface ColorBarProps {
-  color: 'blue' | 'yellow' | 'red';
+  variant: ColorVariant;
 }
 
-export function ColorBar({ color }: ColorBarProps) {
-  const colorMap = {
-    blue: '#3182CE',
-    yellow: '#D69E2E',
-    red: '#E53E3E',
-  };
-
+export function ColorBar({ variant }: ColorBarProps) {
   return (
     <View>
       <View
-        style={[styles.bar, { backgroundColor: colorMap[color] }]}
+        style={[styles.bar, { backgroundColor: COLOR_VARIANTS[variant] }]}
       />
     </View>
   );
@@ -24,13 +18,9 @@ export function ColorBar({ color }: ColorBarProps) {
 
 const styles = StyleSheet.create({
   bar: {
-    borderRadius: 6,
-    elevation: 3,
+    ...CARD_STYLES.iconBox,
+    borderRadius: BORDER_RADIUS.sm,
     height: 12,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.12,
-    shadowRadius: 4,
     width: '100%',
   },
 });
