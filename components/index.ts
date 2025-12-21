@@ -8,3 +8,6 @@ export { default as IconButton } from './IconButton';
 export { default as InfoCard } from './InfoCard';
 export { default as CardList } from './CardList';
 export { default as AppleSignInButton } from './AppleSignInButton';
+export { default as PointsSummaryCard } from './PointsSummaryCard';
+export { default as FeedbackCard } from './FeedbackCard';
+export { default as PointsRow } from './PointsRow';
