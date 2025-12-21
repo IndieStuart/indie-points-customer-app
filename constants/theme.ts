@@ -3,8 +3,8 @@
  * Centralized theme configuration for scalable styling
  */
 
-// Color Palette
-export const colors = {
+// Color Palette - Light Mode
+export const lightColors = {
   // Primary Colors
   primary: {
     blue: '#3182CE',
@@ -43,6 +43,50 @@ export const colors = {
     light: 'rgba(255, 255, 255, 0.2)',
   },
 };
+
+// Color Palette - Dark Mode
+export const darkColors = {
+  // Primary Colors
+  primary: {
+    blue: '#63B3ED',
+    yellow: '#ECC94B',
+    red: '#FC8181',
+  },
+
+  // Background Colors
+  background: {
+    primary: '#1A202C',
+    card: '#2D3748',
+  },
+
+  // Text Colors
+  text: {
+    dark: '#F7FAFC',
+    medium: '#CBD5E0',
+    light: '#A0AEC0',
+  },
+
+  // Error/Alert Colors
+  error: {
+    background: '#742A2A',
+    border: '#FC8181',
+    text: '#FEB2B2',
+  },
+
+  // Border Colors
+  border: {
+    default: 'rgba(255, 255, 255, 0.12)',
+    dark: 'rgba(255, 255, 255, 0.18)',
+  },
+
+  // Overlay Colors
+  overlay: {
+    light: 'rgba(255, 255, 255, 0.15)',
+  },
+};
+
+// Default export for backward compatibility
+export const colors = lightColors;
 
 // Spacing Scale
 export const spacing = {
@@ -123,7 +167,24 @@ export const sizes = {
 };
 
 // Helper Functions
-export const getIconColor = (color: 'blue' | 'yellow' | 'red'): string => {
+export const getIconColor = (color: 'blue' | 'yellow' | 'red', isDark: boolean = false): string => {
+  const colorScheme = isDark ? darkColors : lightColors;
+  switch (color) {
+    case 'blue':
+      return colorScheme.primary.blue;
+    case 'yellow':
+      return colorScheme.primary.yellow;
+    case 'red':
+      return colorScheme.primary.red;
+  }
+};
+
+export const getColors = (isDark: boolean) => isDark ? darkColors : lightColors;
+
+/**
+ * Get icon color using the colors object directly
+ */
+export const getIconColorFromScheme = (color: 'blue' | 'yellow' | 'red', colors: typeof lightColors): string => {
   switch (color) {
     case 'blue':
       return colors.primary.blue;

@@ -2,12 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import BottomTabNavigator from './components/BottomTabNavigator';
 
 function AppContent() {
   const { session, loading } = useAuth();
+  const { isDark } = useTheme();
   const [showLogoutPage, setShowLogoutPage] = useState(false);
   const [prevSession, setPrevSession] = useState(session);
 
@@ -35,14 +37,20 @@ function AppContent() {
     return <LoginPage />;
   }
 
-  return <BottomTabNavigator />;
+  return (
+    <>
+      <BottomTabNavigator />
+      <StatusBar style={isDark ? 'light' : 'dark'} />
+    </>
+  );
 }
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-      <StatusBar style="auto" />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

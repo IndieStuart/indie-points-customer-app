@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-import { colors, spacing, typography, borderRadius, shadows, sizes } from '../constants/theme';
+import { spacing, typography, borderRadius, shadows, sizes } from '../constants/theme';
+import { useColors } from '../contexts/ThemeContext';
 
 interface IconButtonProps {
   label: string;
@@ -15,19 +16,42 @@ export default function IconButton({
   variant = 'primary',
   style 
 }: IconButtonProps) {
-  const buttonStyle = variant === 'primary' ? styles.primaryButton : styles.blackButton;
+  const colors = useColors();
+
+  const primaryButtonStyle = {
+    backgroundColor: colors.background.card,
+    borderWidth: 2,
+    borderColor: colors.primary.blue,
+  };
+  
+  const primaryTextStyle = {
+    color: colors.primary.blue,
+  };
+
+  const blackButtonStyle = {
+    backgroundColor: colors.background.card,
+    borderWidth: 2,
+    borderColor: colors.text.dark,
+  };
+
+  const blackTextStyle = {
+    color: colors.text.dark,
+  };
   
   return (
     <Pressable 
       style={({ pressed }) => [
         styles.button,
-        buttonStyle,
+        variant === 'primary' ? primaryButtonStyle : blackButtonStyle,
         pressed && styles.buttonPressed,
         style,
       ]}
       onPress={onPress}
     >
-      <Text style={styles.buttonText}>{label}</Text>
+      <Text style={[
+        styles.buttonText,
+        variant === 'primary' ? primaryTextStyle : blackTextStyle,
+      ]}>{label}</Text>
     </Pressable>
   );
 }
@@ -39,20 +63,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     ...shadows.md,
-  },
-  primaryButton: {
-    backgroundColor: colors.primary.blue,
-    borderWidth: 2,
-    borderColor: colors.border.dark,
     ...shadows.lg,
-  },
-  blackButton: {
-    backgroundColor: '#000000',
   },
   buttonText: {
     fontSize: typography.fontSize.md,
     fontWeight: typography.fontWeight.semibold,
-    color: '#FFFFFF',
   },
   buttonPressed: {
     opacity: 0.7,

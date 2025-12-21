@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, StyleSheet } from 'react-native';
-import { colors, typography } from '../constants/theme';
+import { typography } from '../constants/theme';
+import { useColors } from '../contexts/ThemeContext';
 
 // Import pages
 import HomePage from '../pages/HomePage';
@@ -15,6 +16,8 @@ const Tab = createBottomTabNavigator();
 
 // Simple icon component using text
 const TabIcon = ({ name, focused }: { name: string; focused: boolean }) => {
+  const colors = useColors();
+
   const iconMap: { [key: string]: string } = {
     Home: '⌂',
     Points: '★',
@@ -25,7 +28,10 @@ const TabIcon = ({ name, focused }: { name: string; focused: boolean }) => {
 
   return (
     <View style={styles.iconContainer}>
-      <Text style={[styles.iconText, focused && styles.iconTextFocused]}>
+      <Text style={[
+        styles.iconText,
+        { color: focused ? colors.primary.blue : colors.text.light }
+      ]}>
         {iconMap[name] || '•'}
       </Text>
     </View>
@@ -33,6 +39,8 @@ const TabIcon = ({ name, focused }: { name: string; focused: boolean }) => {
 };
 
 export default function BottomTabNavigator() {
+  const colors = useColors();
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -42,7 +50,14 @@ export default function BottomTabNavigator() {
           ),
           tabBarActiveTintColor: colors.primary.blue,
           tabBarInactiveTintColor: colors.text.light,
-          tabBarStyle: styles.tabBar,
+          tabBarStyle: {
+            backgroundColor: colors.background.card,
+            borderTopWidth: 1,
+            borderTopColor: colors.border.default,
+            paddingBottom: 5,
+            paddingTop: 5,
+            height: 60,
+          },
           tabBarLabelStyle: styles.tabBarLabel,
           headerShown: false,
         })}
@@ -58,14 +73,6 @@ export default function BottomTabNavigator() {
 }
 
 const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: colors.background.card,
-    borderTopWidth: 1,
-    borderTopColor: colors.border.default,
-    paddingBottom: 5,
-    paddingTop: 5,
-    height: 60,
-  },
   tabBarLabel: {
     fontSize: typography.fontSize.sm - 2,
     fontWeight: typography.fontWeight.semibold,
@@ -76,9 +83,5 @@ const styles = StyleSheet.create({
   },
   iconText: {
     fontSize: 24,
-    color: colors.text.light,
-  },
-  iconTextFocused: {
-    color: colors.primary.blue,
   },
 });

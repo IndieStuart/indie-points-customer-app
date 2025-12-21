@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { colors, spacing, borderRadius, typography } from '../constants/theme';
+import { spacing, borderRadius, typography } from '../constants/theme';
+import { useColors } from '../contexts/ThemeContext';
 
 interface ErrorMessageProps {
   message: string;
@@ -8,24 +9,30 @@ interface ErrorMessageProps {
 }
 
 export function ErrorMessage({ message, style }: ErrorMessageProps) {
+  const colors = useColors();
+
   return (
-    <View style={[styles.container, style]}>
-      <Text style={styles.text}>{message}</Text>
+    <View style={[
+      styles.container,
+      {
+        backgroundColor: colors.error.background,
+        borderColor: colors.error.border,
+      },
+      style
+    ]}>
+      <Text style={[styles.text, { color: colors.error.text }]}>{message}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.error.background,
     borderRadius: borderRadius.md,
     borderWidth: 1,
-    borderColor: colors.error.border,
     padding: spacing.md,
     marginBottom: spacing.md,
   },
   text: {
-    color: colors.error.text,
     textAlign: 'center',
     fontSize: typography.fontSize.md,
     fontWeight: typography.fontWeight.semibold,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { colors, spacing, borderRadius, shadows, typography, sizes, getIconColor } from '../constants/theme';
+import { spacing, borderRadius, shadows, typography, sizes, getIconColorFromScheme } from '../constants/theme';
+import { useColors } from '../contexts/ThemeContext';
 
 interface CardProps {
   title: string;
@@ -10,15 +11,30 @@ interface CardProps {
 }
 
 export function Card({ title, description, iconColor, style }: CardProps) {
+  const colors = useColors();
+
   return (
-    <View style={[styles.card, style]}>
+    <View style={[
+      styles.card, 
+      { 
+        backgroundColor: colors.background.card,
+        borderColor: colors.border.default,
+      },
+      style
+    ]}>
       <View style={styles.cardInner}>
-        <View style={[styles.iconBox, { backgroundColor: getIconColor(iconColor) }]}>
-          <View style={styles.iconGlow} />
+        <View style={[
+          styles.iconBox, 
+          { 
+            backgroundColor: getIconColorFromScheme(iconColor, colors),
+            borderColor: colors.border.dark,
+          }
+        ]}>
+          <View style={[styles.iconGlow, { backgroundColor: colors.overlay.light }]} />
         </View>
         <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>{title}</Text>
-          <Text style={styles.cardDescription}>{description}</Text>
+          <Text style={[styles.cardTitle, { color: colors.text.dark }]}>{title}</Text>
+          <Text style={[styles.cardDescription, { color: colors.text.medium }]}>{description}</Text>
         </View>
       </View>
     </View>
@@ -27,11 +43,9 @@ export function Card({ title, description, iconColor, style }: CardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.background.card,
     borderRadius: borderRadius.xl,
     ...shadows.md,
     borderWidth: 2,
-    borderColor: colors.border.default,
   },
   cardInner: {
     flexDirection: 'row',
@@ -44,13 +58,11 @@ const styles = StyleSheet.create({
     marginRight: spacing.md,
     ...shadows.lg,
     borderWidth: 2,
-    borderColor: colors.border.dark,
   },
   iconGlow: {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: colors.overlay.light,
     borderRadius: borderRadius.lg,
   },
   cardContent: {
@@ -59,12 +71,10 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: typography.fontSize.lg,
     fontWeight: typography.fontWeight.bold,
-    color: colors.text.dark,
     marginBottom: spacing.sm,
   },
   cardDescription: {
     fontSize: typography.fontSize.sm,
-    color: colors.text.medium,
     lineHeight: typography.lineHeight.md,
   },
 });

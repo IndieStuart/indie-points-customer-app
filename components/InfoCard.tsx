@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { colors, spacing, typography, borderRadius, shadows, sizes } from '../constants/theme';
+import { spacing, typography, borderRadius, shadows, sizes } from '../constants/theme';
+import { useColors } from '../contexts/ThemeContext';
 
 interface InfoCardProps {
   icon: string;
@@ -15,19 +16,35 @@ export default function InfoCard({
   icon, 
   title, 
   subtitle, 
-  iconColor = colors.primary.blue,
+  iconColor,
   children,
   style 
 }: InfoCardProps) {
+  const colors = useColors();
+  const defaultIconColor = iconColor || colors.primary.blue;
+
   return (
-    <View style={[styles.card, style]}>
+    <View style={[
+      styles.card,
+      {
+        backgroundColor: colors.background.card,
+        borderColor: colors.border.default,
+      },
+      style
+    ]}>
       <View style={styles.header}>
-        <View style={[styles.iconContainer, { backgroundColor: iconColor }]}>
+        <View style={[
+          styles.iconContainer,
+          {
+            backgroundColor: defaultIconColor,
+            borderColor: colors.border.dark,
+          }
+        ]}>
           <Text style={styles.iconText}>{icon}</Text>
         </View>
         <View style={styles.content}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={[styles.title, { color: colors.text.dark }]}>{title}</Text>
+          <Text style={[styles.subtitle, { color: colors.text.medium }]}>{subtitle}</Text>
         </View>
       </View>
       
@@ -38,13 +55,11 @@ export default function InfoCard({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.background.card,
     borderRadius: borderRadius.xl,
     padding: spacing.lg,
     marginBottom: spacing.lg,
     ...shadows.md,
     borderWidth: 2,
-    borderColor: colors.border.default,
   },
   header: {
     flexDirection: 'row',
@@ -60,7 +75,6 @@ const styles = StyleSheet.create({
     marginRight: spacing.md,
     ...shadows.lg,
     borderWidth: 2,
-    borderColor: colors.border.dark,
   },
   iconText: {
     fontSize: typography.fontSize.xl,
@@ -71,11 +85,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: typography.fontSize.lg,
     fontWeight: typography.fontWeight.bold,
-    color: colors.text.dark,
     marginBottom: spacing.sm,
   },
   subtitle: {
     fontSize: typography.fontSize.sm,
-    color: colors.text.medium,
   },
 });

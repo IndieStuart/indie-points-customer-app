@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 import { ColorBar } from './';
-import { colors, spacing, typography } from '../constants/theme';
+import { spacing, typography } from '../constants/theme';
+import { useColors } from '../contexts/ThemeContext';
 
 interface PageHeaderProps {
   title: string;
@@ -16,9 +17,11 @@ export default function PageHeader({
   showColorBars = true,
   style 
 }: PageHeaderProps) {
+  const colors = useColors();
+
   return (
     <View style={[styles.header, style]}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, { color: colors.text.dark }]}>{title}</Text>
 
       {showColorBars && (
         <View style={styles.barsContainer}>
@@ -28,7 +31,7 @@ export default function PageHeader({
         </View>
       )}
 
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      <Text style={[styles.subtitle, { color: colors.text.medium }]}>{subtitle}</Text>
     </View>
   );
 }
@@ -41,7 +44,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: typography.fontSize.xxl,
     fontWeight: typography.fontWeight.extrabold,
-    color: colors.text.dark,
     marginBottom: spacing.sm,
   },
   barsContainer: {
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: typography.fontSize.md,
-    color: colors.text.medium,
     textAlign: 'center',
     marginBottom: spacing.sm,
   },
