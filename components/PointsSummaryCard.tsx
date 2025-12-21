@@ -1,56 +1,66 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { spacing, borderRadius, shadows, typography, getIconColorFromScheme } from '../constants/theme';
-import { useColors } from '../contexts/ThemeContext';
+import { View, Text, StyleSheet } from 'react-native';
+import { COLORS } from '../constants/theme';
 
 interface PointsSummaryCardProps {
   label: string;
   value: number | string;
   color: 'blue' | 'yellow' | 'red';
+  spaced?: boolean;
 }
 
 export default function PointsSummaryCard({ 
   label, 
   value, 
-  color
+  color,
+  spaced = false,
 }: PointsSummaryCardProps) {
-  const colors = useColors();
-  const backgroundColor = getIconColorFromScheme(color, colors);
-
   return (
-    <View style={[
-      styles.card,
-      {
-        backgroundColor,
-        borderColor: colors.border.dark,
-      }
-    ]}>
-      <Text style={[styles.label, { color: colors.background.card }]}>{label}</Text>
-      <Text style={[styles.value, { color: colors.background.card }]}>
-        {value}
-      </Text>
+    <View style={[styles.container, spaced && styles.spaced]}>
+      <View style={[styles.colorPill, { backgroundColor: colorMap[color] }]} />
+      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.value}>{value}</Text>
     </View>
   );
 }
 
+const colorMap = {
+  blue: COLORS.blue,
+  yellow: COLORS.yellow,
+  red: COLORS.red,
+};
+
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: borderRadius.xl,
-    padding: spacing.lg,
-    paddingVertical: spacing.md,
-    ...shadows.lg,
-    borderWidth: 4,
-    marginBottom: spacing.lg,
+  container: {
+    alignItems: 'flex-start',
+    backgroundColor: COLORS.background,
+    borderColor: COLORS.border,
+    borderRadius: 12,
+    borderWidth: 2,
+    elevation: 6,
     flex: 1,
+    padding: 12,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.18,
+    shadowRadius: 10,
+  },
+  spaced: {
+    marginBottom: 12,
+  },
+  colorPill: {
+    borderRadius: 6,
+    height: 8,
+    marginBottom: 8,
+    width: '100%',
   },
   label: {
-    fontSize: typography.fontSize.sm,
-    fontWeight: typography.fontWeight.semibold,
-    marginBottom: spacing.sm,
+    color: COLORS.muted,
+    fontSize: 14,
+    marginBottom: 4,
   },
   value: {
-    fontWeight: typography.fontWeight.bold,
-    fontSize: 32,
-    lineHeight: 40,
+    fontSize: 22,
+    fontWeight: '700',
   },
 });

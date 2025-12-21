@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle } from 'react-native';
-import { spacing } from '../constants/theme';
+import { View, StyleSheet } from 'react-native';
 
 interface CardListProps {
   children: React.ReactNode;
@@ -16,7 +15,6 @@ export default function CardList({ children }: CardListProps) {
 
 const styles = StyleSheet.create({
   container: {
-    gap: spacing.md,
-    marginBottom: spacing.md,
+    gap: 12,
   },
 });

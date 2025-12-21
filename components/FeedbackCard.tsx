@@ -1,108 +1,86 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, Linking } from 'react-native';
-import { spacing, borderRadius, shadows, typography } from '../constants/theme';
-import { useColors } from '../contexts/ThemeContext';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { COLORS } from '../constants/theme';
 
 export default function FeedbackCard() {
-  const colors = useColors();
   const handleSendFeedback = () => {
     Linking.openURL('mailto:hello@indiepoints.com?subject=Feedback for Indie Points');
   };
   return (
-    <View style={[
-      styles.card,
-      {
-        backgroundColor: colors.background.card,
-        borderColor: colors.primary.blue,
-      }
-    ]}>
-      <View style={styles.header}>
-        <View style={[
-          styles.iconContainer,
-          {
-            backgroundColor: colors.primary.blue,
-            borderColor: colors.border.dark,
-          }
-        ]}>
-          <Text style={styles.iconText}>💬</Text>
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <View style={styles.iconBox}>
+          <Text style={styles.icon}>💬</Text>
         </View>
         <View style={styles.content}>
-          <Text style={[styles.title, { color: colors.text.dark }]}>
-            We'd love your feedback!
-          </Text>
-          <Text style={[styles.subtitle, { color: colors.text.medium }]}>
-            Help us improve Indie Points
-          </Text>
+          <Text style={styles.title}>We'd love your feedback!</Text>
+          <Text style={styles.subtitle}>Help us improve Indie Points</Text>
         </View>
       </View>
-
       <TouchableOpacity
-        style={[
-          styles.button,
-          {
-            backgroundColor: colors.primary.blue,
-            borderColor: colors.border.dark,
-          }
-        ]}
         onPress={handleSendFeedback}
+        style={styles.button}
       >
-        <Text style={[styles.buttonText, { color: colors.background.card }]}>
-          Send Feedback
-        </Text>
+        <Text style={styles.buttonText}>Send Feedback</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: borderRadius.xl,
-    padding: spacing.lg,
-    ...shadows.md,
-    borderWidth: 2,
-    marginBottom: spacing.xl,
-  },
-  header: {
-    flexDirection: 'row',
-    marginBottom: spacing.lg,
+  button: {
     alignItems: 'center',
+    backgroundColor: COLORS.blue,
+    borderRadius: 8,
+    marginTop: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
-  iconContainer: {
-    width: 72,
-    height: 72,
-    borderRadius: borderRadius.lg,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: spacing.md,
-    ...shadows.lg,
+  buttonText: {
+    color: COLORS.white,
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  container: {
+    backgroundColor: COLORS.background,
+    borderColor: COLORS.border,
+    borderRadius: 12,
     borderWidth: 2,
-  },
-  iconText: {
-    fontSize: 36,
+    elevation: 6,
+    marginVertical: 12,
+    padding: 12,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.18,
+    shadowRadius: 10,
   },
   content: {
     flex: 1,
   },
-  title: {
-    fontSize: typography.fontSize.lg,
-    fontWeight: typography.fontWeight.bold,
-    marginBottom: spacing.sm,
+  icon: {
+    fontSize: 20,
+  },
+  iconBox: {
+    alignItems: 'center',
+    elevation: 3,
+    justifyContent: 'center',
+    marginRight: 12,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+    width: 48,
+  },
+  row: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   subtitle: {
-    fontSize: typography.fontSize.sm,
-    lineHeight: typography.lineHeight.sm,
+    color: COLORS.muted,
+    fontSize: 14,
   },
-  button: {
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
-    borderRadius: borderRadius.lg,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...shadows.md,
-    borderWidth: 2,
-  },
-  buttonText: {
-    fontSize: typography.fontSize.md,
-    fontWeight: typography.fontWeight.bold,
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

@@ -1,9 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, Text, StyleSheet } from 'react-native';
-import { typography } from '../constants/theme';
-import { useColors } from '../contexts/ThemeContext';
+import { View, Text } from 'react-native';
 
 // Import pages
 import HomePage from '../pages/HomePage';
@@ -14,10 +12,7 @@ import SettingsPage from '../pages/SettingsPage';
 
 const Tab = createBottomTabNavigator();
 
-// Simple icon component using text
 const TabIcon = ({ name, focused }: { name: string; focused: boolean }) => {
-  const colors = useColors();
-
   const iconMap: { [key: string]: string } = {
     Home: '⌂',
     Points: '★',
@@ -27,11 +22,8 @@ const TabIcon = ({ name, focused }: { name: string; focused: boolean }) => {
   };
 
   return (
-    <View style={styles.iconContainer}>
-      <Text style={[
-        styles.iconText,
-        { color: focused ? colors.primary.blue : colors.text.light }
-      ]}>
+    <View>
+      <Text>
         {iconMap[name] || '•'}
       </Text>
     </View>
@@ -39,49 +31,22 @@ const TabIcon = ({ name, focused }: { name: string; focused: boolean }) => {
 };
 
 export default function BottomTabNavigator() {
-  const colors = useColors();
-
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused }) => (
-            <TabIcon name={route.name} focused={focused} />
+            <TabIcon focused={focused} name={route.name} />
           ),
-          tabBarActiveTintColor: colors.primary.blue,
-          tabBarInactiveTintColor: colors.text.light,
-          tabBarStyle: {
-            backgroundColor: colors.background.card,
-            borderTopWidth: 1,
-            borderTopColor: colors.border.default,
-            paddingBottom: 5,
-            paddingTop: 5,
-            height: 60,
-          },
-          tabBarLabelStyle: styles.tabBarLabel,
           headerShown: false,
         })}
       >
-        <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="Points" component={PointsPage} />
-        <Tab.Screen name="Scan" component={ScanPage} />
-        <Tab.Screen name="History" component={HistoryPage} />
-        <Tab.Screen name="Settings" component={SettingsPage} />
+        <Tab.Screen component={HomePage} name="Home" />
+        <Tab.Screen component={PointsPage} name="Points" />
+        <Tab.Screen component={ScanPage} name="Scan" />
+        <Tab.Screen component={HistoryPage} name="History" />
+        <Tab.Screen component={SettingsPage} name="Settings" />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  tabBarLabel: {
-    fontSize: typography.fontSize.sm - 2,
-    fontWeight: typography.fontWeight.semibold,
-  },
-  iconContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  iconText: {
-    fontSize: 24,
-  },
-});

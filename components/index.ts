@@ -2,6 +2,7 @@
 export { Card } from './Card';
 export { ErrorMessage } from './ErrorMessage';
 export { ColorBar } from './ColorBar';
+export { default as Columns } from './Columns';
 export { default as PageContainer } from './PageContainer';
 export { default as PageHeader } from './PageHeader';
 export { default as IconButton } from './IconButton';

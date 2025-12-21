@@ -22,9 +22,8 @@ export default function LoginPage() {
     <PageContainer>
       <PageHeader 
         title="Indie Points"
-        subtitle="Earn points, get rewards, support local businesses"
+        subtitle="Earn points, redeem rewards, support local businesses"
       />
-
       <CardList>
         <Card 
           title="Earn points" 
@@ -42,9 +41,7 @@ export default function LoginPage() {
           iconColor="red"
         />
       </CardList>
-
       {error && <ErrorMessage message={error} />}
-
       <AppleSignInButton onPress={handleAppleSignIn} />
     </PageContainer>
   );

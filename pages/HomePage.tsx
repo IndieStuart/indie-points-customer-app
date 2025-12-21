@@ -6,12 +6,13 @@ export default function HomePage() {
     <PageContainer>
       <PageHeader 
         title="Indie Points"
-        subtitle="Good morning. Welcome to Indie Points! Here is your points summary."
+        subtitle="Welcome to Indie Points! Here is your points summary."
       />
       <PointsSummaryCard
         label="Active points"
         value={1}
         color="blue"
+        spaced
       />
       <PointsRow>
         <PointsSummaryCard

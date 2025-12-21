@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { spacing, borderRadius, shadows, typography, sizes, getIconColorFromScheme } from '../constants/theme';
-import { useColors } from '../contexts/ThemeContext';
+import { View, Text, StyleSheet } from 'react-native';
+import { COLORS } from '../constants/theme';
 
 interface CardProps {
   title: string;
@@ -10,29 +9,24 @@ interface CardProps {
 }
 
 export function Card({ title, description, iconColor }: CardProps) {
-  const colors = useColors();
+  const colorMap = {
+    blue: '#3182CE',
+    yellow: '#D69E2E',
+    red: '#E53E3E',
+  };
 
   return (
-    <View style={[
-      styles.card, 
-      { 
-        backgroundColor: colors.background.card,
-        borderColor: colors.border.default,
-      }
-    ]}>
-      <View style={styles.cardInner}>
-        <View style={[
-          styles.iconBox, 
-          { 
-            backgroundColor: getIconColorFromScheme(iconColor, colors),
-            borderColor: colors.border.dark,
-          }
-        ]}>
-          <View style={[styles.iconGlow, { backgroundColor: colors.overlay.light }]} />
-        </View>
-        <View style={styles.cardContent}>
-          <Text style={[styles.cardTitle, { color: colors.text.dark }]}>{title}</Text>
-          <Text style={[styles.cardDescription, { color: colors.text.medium }]}>{description}</Text>
+    <View
+      style={styles.card}
+    >
+      <View style={styles.row}>
+        <View
+          style={[styles.iconWrapper, { backgroundColor: colorMap[iconColor] }]}
+        />
+
+        <View style={styles.content}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.description}>{description}</Text>
         </View>
       </View>
     </View>
@@ -41,38 +35,42 @@ export function Card({ title, description, iconColor }: CardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: borderRadius.xl,
-    ...shadows.md,
+    backgroundColor: COLORS.background,
+    borderColor: COLORS.border,
+    borderRadius: 12,
     borderWidth: 2,
+    elevation: 6,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.18,
+    shadowRadius: 10,
   },
-  cardInner: {
+  row: {
+    alignItems: 'center',
     flexDirection: 'row',
-    padding: spacing.lg,
   },
-  iconBox: {
-    width: sizes.icon.md,
-    height: sizes.icon.md,
-    borderRadius: borderRadius.lg,
-    marginRight: spacing.md,
-    ...shadows.lg,
-    borderWidth: 2,
+  iconWrapper: {
+    borderRadius: 12,
+    elevation: 3,
+    height: 60,
+    marginRight: 12,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 4,
+    width: 60,
   },
-  iconGlow: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    borderRadius: borderRadius.lg,
-  },
-  cardContent: {
+  content: {
     flex: 1,
   },
-  cardTitle: {
-    fontSize: typography.fontSize.lg,
-    fontWeight: typography.fontWeight.bold,
-    marginBottom: spacing.sm,
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 4,
   },
-  cardDescription: {
-    fontSize: typography.fontSize.sm,
-    lineHeight: typography.lineHeight.md,
+  description: {
+    color: COLORS.muted,
+    fontSize: 14,
   },
 });

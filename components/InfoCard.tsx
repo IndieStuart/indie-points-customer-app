@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import { spacing, typography, borderRadius, shadows, sizes } from '../constants/theme';
-import { useColors } from '../contexts/ThemeContext';
+import { View, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { COLORS } from '../constants/theme';
 
 interface InfoCardProps {
   icon: string;
@@ -16,72 +16,58 @@ export default function InfoCard({
   subtitle, 
   children
 }: InfoCardProps) {
-  const colors = useColors();
-
   return (
-    <View style={[
-      styles.card,
-      {
-        backgroundColor: colors.background.card,
-        borderColor: colors.border.default,
-      }
-    ]}>
-      <View style={styles.header}>
-        <View style={[
-          styles.iconContainer,
-          {
-            backgroundColor: colors.primary.blue,
-            borderColor: colors.border.dark,
-          }
-        ]}>
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <View style={styles.iconBox}>
           <Text style={styles.iconText}>{icon}</Text>
         </View>
         <View style={styles.content}>
-          <Text style={[styles.title, { color: colors.text.dark }]}>{title}</Text>
-          <Text style={[styles.subtitle, { color: colors.text.medium }]}>{subtitle}</Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
       </View>
-      
-      {children}
+      {children && <View style={styles.children}>{children}</View>}
     </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  card: {
-    borderRadius: borderRadius.xl,
-    padding: spacing.lg,
-    marginBottom: spacing.lg,
-    ...shadows.md,
-    borderWidth: 2,
+  children: {
+    marginTop: 12,
   },
-  header: {
-    flexDirection: 'row',
-    marginBottom: spacing.lg,
-    alignItems: 'center',
-  },
-  iconContainer: {
-    width: sizes.icon.sm,
-    height: sizes.icon.sm,
-    borderRadius: borderRadius.lg,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: spacing.md,
-    ...shadows.lg,
-    borderWidth: 2,
-  },
-  iconText: {
-    fontSize: typography.fontSize.xl,
+  container: {
+    backgroundColor: COLORS.background,
+    borderColor: COLORS.border,
+    borderRadius: 12,
+    borderWidth: 1,
+    padding: 16,
+    marginVertical: 8,
   },
   content: {
     flex: 1,
   },
-  title: {
-    fontSize: typography.fontSize.lg,
-    fontWeight: typography.fontWeight.bold,
-    marginBottom: spacing.sm,
+  iconBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+    width: 48,
+  },
+  iconText: {
+    fontSize: 20,
+  },
+  row: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   subtitle: {
-    fontSize: typography.fontSize.sm,
+    color: COLORS.muted,
+    fontSize: 14,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 4,
   },
 });

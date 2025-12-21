@@ -1,20 +1,14 @@
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import * as AppleAuthentication from 'expo-apple-authentication';
-import { borderRadius, shadows, sizes } from '../constants/theme';
-import { useTheme } from '../contexts/ThemeContext';
 
 interface AppleSignInButtonProps {
   onPress: () => void;
 }
 
-/**
- * Styled Apple Sign In button with consistent sizing and shadows
- */
 export default function AppleSignInButton({ 
   onPress
 }: AppleSignInButtonProps) {
-  const { isDark } = useTheme();
 
   if (Platform.OS !== 'ios') {
     return null;
@@ -22,21 +16,19 @@ export default function AppleSignInButton({
 
   return (
     <AppleAuthentication.AppleAuthenticationButton
+      buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
       buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
-      buttonStyle={isDark 
-        ? AppleAuthentication.AppleAuthenticationButtonStyle.WHITE
-        : AppleAuthentication.AppleAuthenticationButtonStyle.BLACK
-      }
-      cornerRadius={borderRadius.md}
-      style={styles.button}
+      cornerRadius={12}
       onPress={onPress}
+      style={styles.appleButton}
     />
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    height: sizes.button.height,
-    ...shadows.md,
+  appleButton: {
+    height: 48,
+    marginVertical: 16,
+    width: '100%',
   },
 });

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { COLORS } from '../constants/theme';
 import { ColorBar } from './';
-import { spacing, typography } from '../constants/theme';
-import { useColors } from '../contexts/ThemeContext';
+import Columns from './Columns';
 
 interface PageHeaderProps {
   title: string;
@@ -13,42 +13,31 @@ export default function PageHeader({
   title, 
   subtitle
 }: PageHeaderProps) {
-  const colors = useColors();
-
   return (
-    <View style={styles.header}>
-      <Text style={[styles.title, { color: colors.text.dark }]}>{title}</Text>
-
-      <View style={styles.barsContainer}>
+    <View>
+      <Text style={styles.title}>{title}</Text>
+      <Columns columns={3} gap={8}>
         <ColorBar color="blue" />
         <ColorBar color="yellow" />
         <ColorBar color="red" />
-      </View>
-
-      <Text style={[styles.subtitle, { color: colors.text.medium }]}>{subtitle}</Text>
+      </Columns>
+      <Text style={styles.subtitle}>{subtitle}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    alignItems: 'center',
-    marginBottom: spacing.sm,
-  },
   title: {
-    fontSize: typography.fontSize.xxl,
-    fontWeight: typography.fontWeight.extrabold,
-    marginBottom: spacing.sm,
-  },
-  barsContainer: {
-    flexDirection: 'row',
-    gap: spacing.md,
-    marginBottom: spacing.md,
-    alignSelf: 'stretch',
+    color: COLORS.black,
+    fontSize: 48,
+    fontWeight: 'bold',
+    marginTop: 30,
+    textAlign: 'center',
   },
   subtitle: {
-    fontSize: typography.fontSize.md,
+    color: COLORS.gray,
+    fontSize: 20,
+    margin: 12,
     textAlign: 'center',
-    marginBottom: spacing.sm,
   },
 });
