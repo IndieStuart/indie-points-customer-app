@@ -1,5 +1,6 @@
 import React from 'react';
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { COLORS } from '../constants/theme';
 
 export default function FeedbackCard() {
@@ -10,7 +11,7 @@ export default function FeedbackCard() {
     <View style={styles.container}>
       <View style={styles.row}>
         <View style={styles.iconBox}>
-          <Text style={styles.icon}>💬</Text>
+          <FontAwesome name="comment" size={20} color={COLORS.blue} />
         </View>
         <View style={styles.content}>
           <Text style={styles.title}>We'd love your feedback!</Text>
