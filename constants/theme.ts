@@ -59,7 +59,7 @@ export const typography = {
     md: 16,   // Body text
     lg: 20,   // Subheadings
     xl: 24,   // Headings
-    xxl: 42,  // Page titles
+    xxl: 36,  // Page titles
   },
   fontWeight: {
     normal: '400' as const,
@@ -115,10 +115,10 @@ export const sizes = {
     lg: 80,
   },
   button: {
-    height: 58,
+    height: 48,
   },
   bar: {
-    height: 14,
+    height: 12,
   },
 };
 
