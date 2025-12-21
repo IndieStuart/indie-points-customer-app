@@ -6,15 +6,13 @@ import { useTheme } from '../contexts/ThemeContext';
 
 interface AppleSignInButtonProps {
   onPress: () => void;
-  buttonType?: AppleAuthentication.AppleAuthenticationButtonType;
 }
 
 /**
  * Styled Apple Sign In button with consistent sizing and shadows
  */
 export default function AppleSignInButton({ 
-  onPress, 
-  buttonType = AppleAuthentication.AppleAuthenticationButtonType.CONTINUE 
+  onPress
 }: AppleSignInButtonProps) {
   const { isDark } = useTheme();
 
@@ -24,7 +22,7 @@ export default function AppleSignInButton({
 
   return (
     <AppleAuthentication.AppleAuthenticationButton
-      buttonType={buttonType}
+      buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
       buttonStyle={isDark 
         ? AppleAuthentication.AppleAuthenticationButtonStyle.WHITE
         : AppleAuthentication.AppleAuthenticationButtonStyle.BLACK

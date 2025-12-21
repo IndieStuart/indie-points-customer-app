@@ -5,10 +5,9 @@ import { useColors } from '../contexts/ThemeContext';
 
 interface ErrorMessageProps {
   message: string;
-  style?: ViewStyle;
 }
 
-export function ErrorMessage({ message, style }: ErrorMessageProps) {
+export function ErrorMessage({ message }: ErrorMessageProps) {
   const colors = useColors();
 
   return (
@@ -17,8 +16,7 @@ export function ErrorMessage({ message, style }: ErrorMessageProps) {
       {
         backgroundColor: colors.error.background,
         borderColor: colors.error.border,
-      },
-      style
+      }
     ]}>
       <Text style={[styles.text, { color: colors.error.text }]}>{message}</Text>
     </View>

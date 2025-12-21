@@ -7,10 +7,9 @@ interface CardProps {
   title: string;
   description: string;
   iconColor: 'blue' | 'yellow' | 'red';
-  style?: ViewStyle;
 }
 
-export function Card({ title, description, iconColor, style }: CardProps) {
+export function Card({ title, description, iconColor }: CardProps) {
   const colors = useColors();
 
   return (
@@ -19,8 +18,7 @@ export function Card({ title, description, iconColor, style }: CardProps) {
       { 
         backgroundColor: colors.background.card,
         borderColor: colors.border.default,
-      },
-      style
+      }
     ]}>
       <View style={styles.cardInner}>
         <View style={[

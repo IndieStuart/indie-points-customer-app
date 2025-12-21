@@ -7,21 +7,16 @@ interface InfoCardProps {
   icon: string;
   title: string;
   subtitle: string;
-  iconColor?: string;
   children?: React.ReactNode;
-  style?: ViewStyle;
 }
 
 export default function InfoCard({ 
   icon, 
   title, 
   subtitle, 
-  iconColor,
-  children,
-  style 
+  children
 }: InfoCardProps) {
   const colors = useColors();
-  const defaultIconColor = iconColor || colors.primary.blue;
 
   return (
     <View style={[
@@ -29,14 +24,13 @@ export default function InfoCard({
       {
         backgroundColor: colors.background.card,
         borderColor: colors.border.default,
-      },
-      style
+      }
     ]}>
       <View style={styles.header}>
         <View style={[
           styles.iconContainer,
           {
-            backgroundColor: defaultIconColor,
+            backgroundColor: colors.primary.blue,
             borderColor: colors.border.dark,
           }
         ]}>

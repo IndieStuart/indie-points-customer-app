@@ -7,29 +7,23 @@ import { useColors } from '../contexts/ThemeContext';
 interface PageHeaderProps {
   title: string;
   subtitle: string;
-  showColorBars?: boolean;
-  style?: ViewStyle;
 }
 
 export default function PageHeader({ 
   title, 
-  subtitle, 
-  showColorBars = true,
-  style 
+  subtitle
 }: PageHeaderProps) {
   const colors = useColors();
 
   return (
-    <View style={[styles.header, style]}>
+    <View style={styles.header}>
       <Text style={[styles.title, { color: colors.text.dark }]}>{title}</Text>
 
-      {showColorBars && (
-        <View style={styles.barsContainer}>
-          <ColorBar color="blue" />
-          <ColorBar color="yellow" />
-          <ColorBar color="red" />
-        </View>
-      )}
+      <View style={styles.barsContainer}>
+        <ColorBar color="blue" />
+        <ColorBar color="yellow" />
+        <ColorBar color="red" />
+      </View>
 
       <Text style={[styles.subtitle, { color: colors.text.medium }]}>{subtitle}</Text>
     </View>

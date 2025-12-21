@@ -7,14 +7,12 @@ interface PointsSummaryCardProps {
   label: string;
   value: number | string;
   color: 'blue' | 'yellow' | 'red';
-  style?: ViewStyle;
 }
 
 export default function PointsSummaryCard({ 
   label, 
   value, 
-  color, 
-  style
+  color
 }: PointsSummaryCardProps) {
   const colors = useColors();
   const backgroundColor = getIconColorFromScheme(color, colors);
@@ -25,8 +23,7 @@ export default function PointsSummaryCard({
       {
         backgroundColor,
         borderColor: colors.border.dark,
-      },
-      style
+      }
     ]}>
       <Text style={[styles.label, { color: colors.background.card }]}>{label}</Text>
       <Text style={[styles.value, { color: colors.background.card }]}>

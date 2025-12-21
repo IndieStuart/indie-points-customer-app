@@ -7,14 +7,12 @@ interface IconButtonProps {
   label: string;
   onPress: () => void;
   variant?: 'primary' | 'black';
-  style?: ViewStyle;
 }
 
 export default function IconButton({ 
   label, 
   onPress, 
-  variant = 'primary',
-  style 
+  variant = 'primary'
 }: IconButtonProps) {
   const colors = useColors();
 
@@ -43,8 +41,7 @@ export default function IconButton({
       style={({ pressed }) => [
         styles.button,
         variant === 'primary' ? primaryButtonStyle : blackButtonStyle,
-        pressed && styles.buttonPressed,
-        style,
+        pressed && styles.buttonPressed
       ]}
       onPress={onPress}
     >

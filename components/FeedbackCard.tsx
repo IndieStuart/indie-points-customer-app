@@ -3,11 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, Linking } from 're
 import { spacing, borderRadius, shadows, typography } from '../constants/theme';
 import { useColors } from '../contexts/ThemeContext';
 
-interface FeedbackCardProps {
-  style?: ViewStyle;
-}
-
-export default function FeedbackCard({ style }: FeedbackCardProps) {
+export default function FeedbackCard() {
   const colors = useColors();
   const handleSendFeedback = () => {
     Linking.openURL('mailto:hello@indiepoints.com?subject=Feedback for Indie Points');
@@ -18,8 +14,7 @@ export default function FeedbackCard({ style }: FeedbackCardProps) {
       {
         backgroundColor: colors.background.card,
         borderColor: colors.primary.blue,
-      },
-      style
+      }
     ]}>
       <View style={styles.header}>
         <View style={[

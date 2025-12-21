@@ -5,15 +5,14 @@ import { useColors } from '../contexts/ThemeContext';
 
 interface PageContainerProps {
   children: React.ReactNode;
-  style?: ViewStyle;
 }
 
-export default function PageContainer({ children, style }: PageContainerProps) {
+export default function PageContainer({ children }: PageContainerProps) {
   const colors = useColors();
 
   return (
     <ScrollView
-      contentContainerStyle={[styles.container, style]}
+      contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
       style={[styles.scrollView, { backgroundColor: colors.background.primary }]}
     >
