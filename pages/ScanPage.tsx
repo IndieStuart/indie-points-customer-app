@@ -1,11 +1,11 @@
 import React from 'react';
 import { PageContainer, PageHeader } from '../components';
 
-export default function HomePage() {
+export default function ScanPage() {
   return (
     <PageContainer>
       <PageHeader 
-        title="Home"
+        title="Scan"
         subtitle=""
       />
     </PageContainer>

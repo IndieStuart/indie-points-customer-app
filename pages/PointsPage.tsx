@@ -1,11 +1,11 @@
 import React from 'react';
 import { PageContainer, PageHeader } from '../components';
 
-export default function HomePage() {
+export default function PointsPage() {
   return (
     <PageContainer>
       <PageHeader 
-        title="Home"
+        title="Points"
         subtitle=""
       />
     </PageContainer>

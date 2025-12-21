@@ -1,11 +1,11 @@
 import React from 'react';
 import { PageContainer, PageHeader } from '../components';
 
-export default function HomePage() {
+export default function HistoryPage() {
   return (
     <PageContainer>
       <PageHeader 
-        title="Home"
+        title="History"
         subtitle=""
       />
     </PageContainer>

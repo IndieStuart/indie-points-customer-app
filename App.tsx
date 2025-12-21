@@ -3,8 +3,8 @@ import { View, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
 import LogoutPage from './pages/LogoutPage';
+import BottomTabNavigator from './components/BottomTabNavigator';
 
 function AppContent() {
   const { session, loading } = useAuth();
@@ -35,7 +35,7 @@ function AppContent() {
     return <LoginPage />;
   }
 
-  return <HomePage />;
+  return <BottomTabNavigator />;
 }
 
 export default function App() {
