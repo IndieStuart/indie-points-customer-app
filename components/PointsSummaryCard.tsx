@@ -16,8 +16,8 @@ export default function PointsSummaryCard({
   spaced = false,
 }: PointsSummaryCardProps) {
   return (
-    <View style={[styles.container, spaced && styles.spaced]}>
-      <View style={[styles.colorPill, { backgroundColor: COLOR_VARIANTS[variant] }]} />
+    <View style={[styles.container, spaced && styles.spaced, VARIANT_BORDER[variant]]}>
+      <View style={[styles.colorPill, VARIANT_PILL[variant]]} />
       <Text style={styles.label}>{label}</Text>
       <Text style={styles.value}>{value}</Text>
     </View>
@@ -48,4 +48,16 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
   },
+});
+
+const VARIANT_BORDER: Record<ColorVariant, any> = StyleSheet.create({
+  blue: { borderColor: COLOR_VARIANTS.blue },
+  yellow: { borderColor: COLOR_VARIANTS.yellow },
+  red: { borderColor: COLOR_VARIANTS.red },
+});
+
+const VARIANT_PILL: Record<ColorVariant, any> = StyleSheet.create({
+  blue: { backgroundColor: COLOR_VARIANTS.blue },
+  yellow: { backgroundColor: COLOR_VARIANTS.yellow },
+  red: { backgroundColor: COLOR_VARIANTS.red },
 });
