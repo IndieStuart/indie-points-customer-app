@@ -1,56 +1,56 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { LayoutChangeEvent, View, StyleSheet } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import { COLORS, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY } from '../constants/theme';
-import { ColorBar } from './ColorBar';
-import Button from './Button';
-import Flex from './Flex';
+import { borderRadius, spacing } from '../constants/theme';
+const appIcon = require('../assets/images/icon.png');
 
 interface QRCodeCardProps {
   userId: string;
-  onRegenerate: () => void;
 }
 
-export function QRCodeCard({ userId, onRegenerate }: QRCodeCardProps) {
+export function QRCodeCard({ userId }: QRCodeCardProps) {
+  const [containerWidth, setContainerWidth] = useState<number>(0);
+
+  const onLayout = (e: LayoutChangeEvent) => {
+    const fullWidth = e.nativeEvent.layout.width;
+    const borderWidth = 4;
+    const innerWidth = Math.max(0, Math.floor(fullWidth - spacing.md * 2 - borderWidth * 2));
+    setContainerWidth(innerWidth);
+  };
+
+  const qrSize = containerWidth > 0 ? containerWidth : 0;
+  const logoSize = Math.max(0, Math.floor(qrSize * 0.2));
+
   return (
     <View style={styles.container}>
-
-      <View style={styles.qrContainer}>
-        <QRCode
-          value={userId}
-          size={280}
-          backgroundColor={COLORS.white}
-          color={COLORS.black}
-          logo={require('../assets/images/icon.png')}
-          logoSize={50}
-          logoBackgroundColor={COLORS.white}
-          logoBorderRadius={8}
-        />
+      <View style={styles.qrWrapper} onLayout={onLayout}>
+        {qrSize > 0 && (
+          <QRCode
+            value={userId}
+            size={qrSize}
+            logo={appIcon}
+            logoBackgroundColor="transparent"
+            logoBorderRadius={borderRadius.md}
+            logoMargin={spacing.xs}
+            logoSize={logoSize}
+          />
+        )}
       </View>
-
-      <Button
-        label="Regenerate"
-        onPress={onRegenerate}
-        variant="primary"
-        accessibilityLabel="Regenerate QR code"
-      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    gap: SPACING.lg,
-  },
-  cardTitle: {
-    ...TYPOGRAPHY.h2,
-    textAlign: 'center',
-  },
-  qrContainer: {
-    ...CARD_STYLES.container,
-    borderColor: COLORS.black,
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: SPACING.xl,
+  },
+  qrWrapper: {
+    alignItems: 'center',
+    borderColor: '#000',
+    borderRadius: borderRadius.lg,
+    borderWidth: 4,
+    marginBottom: spacing.md,
+    padding: spacing.md,
+    width: '100%',
   },
 });

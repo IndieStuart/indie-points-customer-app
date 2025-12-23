@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { useColorScheme } from 'react-native';
-import { lightColors, darkColors } from '../constants/theme';
+import { lightTheme, darkTheme } from '../constants/theme';
 
 interface ThemeContextType {
   isDark: boolean;
@@ -32,5 +32,5 @@ export function useTheme() {
  */
 export function useColors() {
   const { isDark } = useTheme();
-  return isDark ? darkColors : lightColors;
+  return isDark ? darkTheme.colors : lightTheme.colors;
 }

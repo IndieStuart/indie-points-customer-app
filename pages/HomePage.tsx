@@ -11,22 +11,21 @@ export default function HomePage() {
       <PointsSummaryCard
         label="Active points"
         value={1}
-        variant="blue"
-        spaced
+        variant="primary"
       />
       <Flex direction="row">
         <PointsSummaryCard
           label="Total earned"
           value={1}
-          variant="yellow"
+          variant="secondary"
         />
         <PointsSummaryCard
           label="Total redeemed"
           value={0}
-          variant="red"
+          variant="tertiary"
         />
       </Flex>
-      <FeedbackCard />
+      <FeedbackCard variant="primary" />
     </PageContainer>
   );
 }

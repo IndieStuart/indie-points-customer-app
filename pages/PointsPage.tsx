@@ -24,19 +24,19 @@ export default function PointsPage() {
       number: 1,
       title: 'Visit a participating business',
       description: 'Look for the Indie Points logo at local businesses',
-      color: 'blue',
+      variant: 'primary',
     },
     {
       number: 2,
       title: 'Show your QR code',
       description: 'Let the business scan your unique QR code before or after purchase',
-      color: 'yellow',
+      variant: 'secondary',
     },
     {
       number: 3,
       title: 'Earn points automatically',
       description: 'Get 1 point for every £1 spent at participating businesses',
-      color: 'red',
+      variant: 'tertiary',
     },
   ];
 
@@ -52,7 +52,10 @@ export default function PointsPage() {
           userId={userId} 
           onRegenerate={handleRegenerate} 
         />
-        <InstructionList title="How to earn points" steps={steps} />
+        <InstructionList
+          steps={steps}
+          title="How to earn points"
+        />
       </Flex>
     </PageContainer>
   );

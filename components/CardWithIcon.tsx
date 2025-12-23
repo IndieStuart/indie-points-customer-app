@@ -1,44 +1,42 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { COLORS, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { lightTheme, spacing, borderRadius, shadows, typography } from '../constants/theme';
+import { useColors } from '../hooks';
+
+type Variant = 'primary' | 'secondary' | 'tertiary';
 
 interface CardWithIconProps {
-  icon: React.ComponentProps<typeof FontAwesome>['name'];
-  iconColor?: string;
   title: string;
   subtitle: string;
+  icon: React.ComponentProps<typeof FontAwesome>['name'];
   children?: React.ReactNode;
-  style?: ViewStyle;
-  variant?: 'default' | 'bordered';
+  variant: Variant;
 }
 
-/**
- * A card component with an icon, title, subtitle, and optional children.
- * Used as the base for FeedbackCard and InfoCard.
- */
-export default function CardWithIcon({ 
+export default function CardWithIcon({
+  title,
+  subtitle,
   icon,
-  iconColor = COLORS.blue,
-  title, 
-  subtitle, 
   children,
-  style,
-  variant = 'default',
+  variant,
 }: CardWithIconProps) {
-  const containerStyle = variant === 'bordered' 
-    ? styles.containerBordered 
-    : styles.container;
+  const colors = useColors();
+  const borderColor = (colors as any)[variant];
+  const backgroundColor = (colors as any)[`${variant}Light`];
+  const variantColor = (colors as any)[variant];
+  const variantDark = (colors as any)[`${variant}Dark`];
+  const iconColor = colors.surface;
 
   return (
-    <View style={[containerStyle, style]}>
+    <View style={[styles.container, { borderColor, backgroundColor }]}> 
       <View style={styles.row}>
-        <View style={styles.iconBox}>
+        <View style={[styles.iconWrapper, { backgroundColor: variantColor, borderColor: variantDark }]}> 
           <FontAwesome name={icon} size={20} color={iconColor} />
         </View>
-        <View style={styles.content}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+        <View style={styles.text}> 
+          <Text style={[styles.title, { color: variantDark }]}>{title}</Text>
+          <Text style={[styles.subtitle, { color: variantDark }]}>{subtitle}</Text>
         </View>
       </View>
       {children && <View style={styles.children}>{children}</View>}
@@ -47,42 +45,41 @@ export default function CardWithIcon({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    ...CARD_STYLES.container,
-    marginVertical: SPACING.md,
-    padding: SPACING.md,
-    gap: SPACING.md,
-  },
-  containerBordered: {
-    backgroundColor: COLORS.background,
-    borderColor: COLORS.border,
-    borderRadius: BORDER_RADIUS.lg,
-    borderWidth: 1,
-    padding: SPACING.lg,
-    marginVertical: SPACING.sm,
-    gap: SPACING.md,
-  },
   children: {
-    width: '100%',
+    marginTop: spacing.md,
   },
-  content: {
-    flex: 1,
+  container: {
+    backgroundColor: lightTheme.colors.surface,
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    marginBottom: spacing.sm,
+    padding: spacing.md,
+    ...shadows.md,
   },
-  iconBox: {
-    ...CARD_STYLES.iconBox,
+  iconWrapper: {
     alignItems: 'center',
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    height: spacing.xxxl,
     justifyContent: 'center',
-    marginRight: SPACING.md,
-    width: 48,
+    marginRight: spacing.md,
+    width: spacing.xxxl,
   },
   row: {
     alignItems: 'center',
     flexDirection: 'row',
   },
   subtitle: {
-    ...TYPOGRAPHY.captionMuted,
+    color: lightTheme.colors.textSecondary,
+    fontSize: typography.fontSizeSm,
+  },
+  text: {
+    flex: 1,
   },
   title: {
-    ...TYPOGRAPHY.h3,
+    color: lightTheme.colors.text,
+    fontSize: typography.fontSizeMd,
+    fontWeight: typography.fontWeightBold as any,
+    marginBottom: spacing.xs,
   },
 });

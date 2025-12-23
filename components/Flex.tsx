@@ -1,23 +1,20 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
 interface FlexProps {
-  direction?: 'row' | 'column';
-  columns?: number;
-  gap?: number;
   children: React.ReactNode;
+  columns?: number;
+  direction?: 'row' | 'column';
+  gap?: number;
+  style?: StyleProp<ViewStyle>;
 }
 
-/**
- * A unified layout component that combines the functionality of Columns and PointsRow.
- * Use `direction="row"` with `columns` prop for multi-column layouts.
- * Use `direction="column"` (or omit) for single column layouts with gap spacing.
- */
 export default function Flex({ 
-  direction = 'column',
+  children,
   columns,
-  gap = 12, 
-  children 
+  direction = 'column',
+  gap = 12,
+  style,
 }: FlexProps) {
   const isRowWithColumns = direction === 'row' && columns;
   const items = React.Children.toArray(children);
@@ -25,9 +22,10 @@ export default function Flex({
   if (isRowWithColumns) {
     // Multi-column row layout (replaces Columns)
     return (
-      <View style={[styles.row, { gap }]}>
+      <View style={[styles.row, style]}
+      >
         {items.map((child, idx) => (
-          <View key={`flex-col-${idx}`} style={styles.column}>
+          <View key={`flex-col-${idx}`} style={[styles.column, idx < items.length - 1 && { marginRight: gap }]}> 
             {child}
           </View>
         ))}
@@ -38,12 +36,9 @@ export default function Flex({
   if (direction === 'row') {
     // Simple row with gap spacing (replaces PointsRow)
     return (
-      <View style={styles.row}>
+      <View style={[styles.row, style]}>
         {items.map((child, idx) => (
-          <View
-            key={`flex-row-${idx}`}
-            style={[styles.rowChild, idx < items.length - 1 && { marginRight: gap }]}
-          >
+          <View key={`flex-row-${idx}`} style={[styles.rowChild, idx < items.length - 1 && { marginRight: gap }]}> 
             {child}
           </View>
         ))}
@@ -53,18 +48,19 @@ export default function Flex({
 
   // Column layout with gap spacing
   return (
-    <View style={[styles.column, { gap }]}>
+    <View style={[styles.column, style]}>
       {children}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-  },
   column: {
     flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
+    width: '100%',
   },
   rowChild: {
     flex: 1,

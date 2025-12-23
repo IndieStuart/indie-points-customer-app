@@ -29,10 +29,10 @@ const TAB_SCREENS: TabConfig[] = [
 ];
 
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
+  name: React.ComponentProps<typeof FontAwesome>['name'];
 }) {
-  return <FontAwesome size={18} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={18} {...props} />;
 }
 
 export default function BottomTabNavigator() {

@@ -11,12 +11,10 @@ export default function SettingsPage() {
         title="Settings"
         subtitle="Manage your account"
       />
-      
       <Button 
         label="Sign Out"
         onPress={signOut}
-        variant="danger"
-        accessibilityLabel="Sign out of your account"
+        variant="tertiary"
       />
     </PageContainer>
   );

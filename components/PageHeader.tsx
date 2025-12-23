@@ -1,25 +1,25 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS, TYPOGRAPHY, SPACING } from '../constants/theme';
 import { ColorBar } from './ColorBar';
 import Flex from './Flex';
+import { spacing, typography, lightTheme } from '../constants/theme';
 
 interface PageHeaderProps {
-  title: string;
   subtitle?: string;
+  title: string;
 }
 
 export default function PageHeader({ 
-  title, 
-  subtitle
+  subtitle,
+  title,
 }: PageHeaderProps) {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Flex direction="row" columns={3} gap={8}>
-        <ColorBar variant="blue" />
-        <ColorBar variant="yellow" />
-        <ColorBar variant="red" />
+      <Flex direction="row" columns={3} gap={8} style={styles.colorBars}>
+        <ColorBar variant="primary" />
+        <ColorBar variant="secondary" />
+        <ColorBar variant="tertiary" />
       </Flex>
       {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
     </View>
@@ -27,16 +27,23 @@ export default function PageHeader({
 }
 
 const styles = StyleSheet.create({
-  title: {
-    ...TYPOGRAPHY.h1,
-    color: COLORS.black,
-    marginTop: SPACING.xxl,
-    textAlign: 'center',
+  colorBars: {
+    marginBottom: spacing.md,
+  },
+  container: {
+    alignItems: 'center',
+    marginTop: spacing.xl,
   },
   subtitle: {
-    ...TYPOGRAPHY.h2,
-    color: COLORS.gray,
-    margin: SPACING.lg,
+    color: lightTheme.colors.textSecondary,
+    fontSize: typography.fontSizeLg,
+    textAlign: 'center',
+  },
+  title: {
+    color: lightTheme.colors.text,
+    fontSize: typography.fontSizeTitle,
+    fontWeight: typography.fontWeightBold as any,
+    marginBottom: spacing.md,
     textAlign: 'center',
   },
 });

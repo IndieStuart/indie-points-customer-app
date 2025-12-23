@@ -1,16 +1,16 @@
 import React from 'react';
-import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Platform, View, StyleSheet } from 'react-native';
 import * as AppleAuthentication from 'expo-apple-authentication';
-import { BORDER_RADIUS, SPACING, COLORS } from '../constants/theme';
+import { borderRadius, shadows } from '../constants/theme';
 
 interface AppleSignInButtonProps {
-  onPress: () => void;
   loading?: boolean;
+  onPress: () => void;
 }
 
 export default function AppleSignInButton({ 
-  onPress,
   loading = false,
+  onPress,
 }: AppleSignInButtonProps) {
 
   if (Platform.OS !== 'ios') {
@@ -23,38 +23,43 @@ export default function AppleSignInButton({
   };
 
   return (
-    <View style={styles.wrapper}>
-      <AppleAuthentication.AppleAuthenticationButton
-        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-        buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
-        cornerRadius={BORDER_RADIUS.lg}
-        onPress={handlePress}
-        style={[styles.appleButton, loading && styles.appleButtonDisabled]}
-      />
-      {loading && (
-        <ActivityIndicator
-          color={COLORS.white}
-          style={styles.spinner}
+    <View style={styles.shadowContainer}>
+      <View style={styles.container}>
+        <AppleAuthentication.AppleAuthenticationButton
+          buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+          buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
+          onPress={handlePress}
+          style={styles.button}
         />
-      )}
+        {loading && (
+          <ActivityIndicator style={styles.loader} />
+        )}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    alignItems: 'center',
-    marginVertical: SPACING.lg,
+  button: {
+    height: '100%',
     width: '100%',
   },
-  appleButton: {
+  container: {
+    borderRadius: borderRadius.md,
+    height: '100%',
+    overflow: 'hidden',
+    width: '100%',
+  },
+  loader: {
+    marginTop: -9,
+    position: 'absolute',
+    right: 12,
+    top: '50%',
+  },
+  shadowContainer: {
+    borderRadius: borderRadius.md,
     height: 48,
     width: '100%',
-  },
-  appleButtonDisabled: {
-    opacity: 0.7,
-  },
-  spinner: {
-    marginTop: SPACING.md,
+    ...shadows.lg,
   },
 });

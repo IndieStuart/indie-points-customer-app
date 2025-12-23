@@ -1,63 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { COLOR_VARIANTS, COLOR_VARIANTS_DARK, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
+import { View, Text, StyleSheet, TextStyle } from 'react-native';
+import { borderRadius, shadows, spacing, typography } from '../constants/theme';
+import { useColors } from '../hooks';
+
+type Variant = 'primary' | 'secondary' | 'tertiary';
 
 interface PointsSummaryCardProps {
   label: string;
   value: number | string;
-  variant: ColorVariant;
-  spaced?: boolean;
+  variant?: Variant;
 }
 
-export default function PointsSummaryCard({ 
-  label, 
-  value, 
-  variant,
-  spaced = false,
-}: PointsSummaryCardProps) {
+export default function PointsSummaryCard({ label, value, variant = 'primary' }: PointsSummaryCardProps) {
+  const colors = useColors();
+  const backgroundColor = (colors as any)[variant];
+  const borderColor = (colors as any)[`${variant}Dark`];
+  const textColor = (colors as any).surface;
+
   return (
-    <View style={[styles.container, spaced && styles.spaced, VARIANT_BORDER[variant]]}>
-      <View style={[styles.colorPill, VARIANT_PILL[variant]]} />
-      <Text style={styles.label}>{label}</Text>
-      <Text style={styles.value}>{value}</Text>
+    <View style={[styles.container, { backgroundColor, borderColor }]}> 
+      <View style={styles.content}>
+        <Text style={[styles.label, { color: textColor }]} numberOfLines={1}>{label}</Text>
+        <Text style={[styles.value, { color: textColor }]}>{value}</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    ...CARD_STYLES.container,
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    padding: spacing.md,
+    ...shadows.md,
+  },
+  content: {
     alignItems: 'flex-start',
-    flex: 1,
-    padding: SPACING.md,
-  },
-  spaced: {
-    marginBottom: SPACING.lg,
-  },
-  colorPill: {
-    borderRadius: BORDER_RADIUS.sm,
-    height: 8,
-    marginBottom: SPACING.sm,
-    width: '100%',
   },
   label: {
-    ...TYPOGRAPHY.captionMuted,
-    marginBottom: SPACING.xs,
+    fontSize: typography.fontSizeMd,
+    marginBottom: spacing.xs,
   },
   value: {
-    fontSize: 22,
-    fontWeight: '700',
+    fontSize: typography.fontSizeXxl,
+    fontWeight: typography.fontWeightBold as TextStyle['fontWeight'],
   },
-});
-
-const VARIANT_BORDER: Record<ColorVariant, any> = StyleSheet.create({
-  blue: { borderColor: COLOR_VARIANTS.blue },
-  yellow: { borderColor: COLOR_VARIANTS.yellow },
-  red: { borderColor: COLOR_VARIANTS.red },
-});
-
-const VARIANT_PILL: Record<ColorVariant, any> = StyleSheet.create({
-  blue: { backgroundColor: COLOR_VARIANTS.blue, borderColor: COLOR_VARIANTS_DARK.blue, borderWidth: 1 },
-  yellow: { backgroundColor: COLOR_VARIANTS.yellow, borderColor: COLOR_VARIANTS_DARK.yellow, borderWidth: 1 },
-  red: { backgroundColor: COLOR_VARIANTS.red, borderColor: COLOR_VARIANTS_DARK.red, borderWidth: 1 },
 });

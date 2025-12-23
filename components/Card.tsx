@@ -1,53 +1,66 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { COLORS, COLOR_VARIANTS, COLOR_VARIANTS_DARK, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
+import { View, Text, StyleSheet, TextStyle } from 'react-native';
+import { lightTheme, spacing, borderRadius, shadows, typography } from '../constants/theme';
+import { useColors } from '../hooks';
+
+type Variant = 'primary' | 'secondary' | 'tertiary';
 
 interface CardProps {
-  title: string;
   description: string;
-  variant: ColorVariant;
+  title: string;
+  variant?: Variant;
 }
 
-export function Card({ title, description, variant }: CardProps) {
-  return (
-    <View style={[styles.card, { borderColor: COLOR_VARIANTS[variant] }]}>
-      <View style={styles.row}>
-        <View
-          style={[
-            styles.iconWrapper,
-            { backgroundColor: COLOR_VARIANTS[variant], borderColor: COLOR_VARIANTS_DARK[variant], borderWidth: 1 },
-          ]}
-        />
-        <View style={styles.content}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.description}>{description}</Text>
+export function Card({ description, title, variant = 'primary' }: CardProps) {
+  const colors = useColors();
+  const borderColor = (colors as any)[`${variant}Light`];
+  const leftBarColor = (colors as any)[variant];
+  const leftBarBorderColor = (colors as any)[`${variant}Dark`];
+  
+    return (
+      <View style={[styles.container, { borderColor: borderColor }]}> 
+        <View style={styles.innerRow}>
+          <View style={[styles.leftBar, { backgroundColor: leftBarColor, borderColor: leftBarBorderColor }]} />
+          <View style={styles.content}>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.description}>{description}</Text>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  card: CARD_STYLES.container,
-  row: {
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  iconWrapper: {
-    ...CARD_STYLES.iconBox,
-    borderRadius: BORDER_RADIUS.lg,
-    height: 60,
-    marginRight: SPACING.md,
-    width: 60,
+  container: {
+    backgroundColor: lightTheme.colors.surface,
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    marginBottom: spacing.sm,
+    padding: spacing.md,
+    ...shadows.md,
   },
   content: {
     flex: 1,
   },
-  title: {
-    ...TYPOGRAPHY.h3,
-    marginBottom: SPACING.xs,
-  },
   description: {
-    ...TYPOGRAPHY.captionMuted,
+    color: lightTheme.colors.textSecondary,
+    fontSize: typography.fontSizeSm,
+  },
+  innerRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  leftBar: {
+    borderRadius: borderRadius.md,
+    borderWidth: 1,
+    height: spacing.xxxl,
+    marginRight: spacing.md,
+    width: spacing.xxxl,
+  },
+  title: {
+    color: lightTheme.colors.text,
+    fontSize: typography.fontSizeMd,
+    fontWeight: typography.fontWeightBold as TextStyle['fontWeight'],
+    marginBottom: spacing.xs,
   },
 });

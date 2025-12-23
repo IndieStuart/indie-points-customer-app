@@ -2,24 +2,23 @@ import React from 'react';
 import CardWithIcon from './CardWithIcon';
 
 interface InfoCardProps {
-  icon: React.ComponentProps<typeof CardWithIcon>['icon'];
-  title: string;
-  subtitle: string;
   children?: React.ReactNode;
+  icon: React.ComponentProps<typeof CardWithIcon>['icon'];
+  subtitle: string;
+  title: string;
 }
 
 export default function InfoCard({ 
-  icon, 
-  title, 
-  subtitle, 
-  children
+  children,
+  icon,
+  subtitle,
+  title,
 }: InfoCardProps) {
   return (
     <CardWithIcon
       icon={icon}
       title={title}
       subtitle={subtitle}
-      variant="bordered"
     >
       {children}
     </CardWithIcon>

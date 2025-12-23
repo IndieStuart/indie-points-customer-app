@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { SPACING } from '../constants/theme';
+import { spacing, lightTheme } from '../constants/theme';
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -19,6 +19,9 @@ export default function PageContainer({ children }: PageContainerProps) {
 
 const styles = StyleSheet.create({
   content: {
-    paddingHorizontal: SPACING.xl,
+    backgroundColor: lightTheme.colors.surface,
+    gap: spacing.md,
+    minHeight: '100%',
+    padding: spacing.md,
   },
 });

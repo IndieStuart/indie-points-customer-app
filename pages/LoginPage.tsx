@@ -17,20 +17,20 @@ export default function LoginPage() {
         subtitle="Earn points, redeem rewards, support local businesses"
       />
       <Flex>
-        <Card 
-          title="Earn points" 
+        <Card
+          title="Earn points"
           description="Get points for every purchase at participating businesses"
-          variant="blue"
+          variant="primary"
         />
-        <Card 
-          title="Redeem rewards" 
+        <Card
+          title="Redeem rewards"
           description="Use your points to get discounts and free items"
-          variant="yellow"
+          variant="secondary"
         />
-        <Card 
-          title="Support local" 
+        <Card
+          title="Support local"
           description="Help your favorite local businesses grow and thrive"
-          variant="red"
+          variant="tertiary"
         />
       </Flex>
       {error && <ErrorMessage message={error} />}

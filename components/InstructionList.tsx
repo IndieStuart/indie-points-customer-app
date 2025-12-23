@@ -1,45 +1,47 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { COLORS, COLOR_VARIANTS, COLOR_VARIANTS_DARK, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
+import { StyleSheet, Text, View } from 'react-native';
+import { borderRadius, lightTheme, shadows, spacing, typography } from '../constants/theme';
+import { useColors } from '../hooks';
+
+type Variant = 'primary' | 'secondary' | 'tertiary';
 
 export interface InstructionStep {
+  description: string;
   number: number;
   title: string;
-  description: string;
-  color: ColorVariant;
+  variant?: Variant;
 }
 
-interface InstructionStepProps extends InstructionStep {}
+interface InstructionListProps {
+  steps: InstructionStep[];
+  title: string;
+}
 
-function Step({ number, title, description, color }: InstructionStepProps) {
+function Step({ description, number, title, variant = 'primary' }: InstructionStep) {
+  const colors = useColors();
+  const bg = (colors as any)[variant];
+  const border = (colors as any)[`${variant}Dark`];
+
   return (
-    <View style={styles.step}>
-      <View
-        style={[
-          styles.numberCircle,
-          { backgroundColor: COLOR_VARIANTS[color], borderColor: COLOR_VARIANTS_DARK[color], borderWidth: 1 },
-        ]}
-      >
-        <Text style={styles.numberText}>{number}</Text>
+    <View style={styles.stepRow}>
+      <View style={[styles.numberCircle, { backgroundColor: bg, borderColor: border }]}> 
+        <Text style={styles.numberLabel}>{number}</Text>
       </View>
       <View style={styles.stepContent}>
         <Text style={styles.stepTitle}>{title}</Text>
-        <Text style={styles.stepDescription}>{description}</Text>
+        <Text style={styles.description}>{description}</Text>
       </View>
     </View>
   );
 }
 
-interface InstructionListProps {
-  title: string;
-  steps: InstructionStep[];
-}
+export function InstructionList({ steps, title }: InstructionListProps) {
+  const colors = useColors();
+  const borderColor = (colors as any).border || lightTheme.colors.border;
 
-export function InstructionList({ title, steps }: InstructionListProps) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>{title}</Text>
-      
+    <View> 
+      <Text style={styles.header}>{title}</Text>
       {steps.map((step) => (
         <Step key={step.number} {...step} />
       ))}
@@ -48,41 +50,44 @@ export function InstructionList({ title, steps }: InstructionListProps) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    gap: SPACING.lg,
-    paddingBottom: SPACING.lg,
+  description: {
+    color: lightTheme.colors.textSecondary,
+    fontSize: typography.fontSizeSm,
   },
-  heading: {
-    ...TYPOGRAPHY.h2,
-    fontWeight: 'bold',
-  },
-  step: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    gap: SPACING.md,
+  header: {
+    color: lightTheme.colors.text,
+    fontSize: typography.fontSizeXl,
+    fontWeight: typography.fontWeightBold as any,
+    marginBottom: spacing.md,
   },
   numberCircle: {
-    ...CARD_STYLES.iconBox,
     alignItems: 'center',
-    borderRadius: 25,
-    height: 50,
+    borderRadius: spacing.xxxl / 2,
+    borderWidth: 1,
+    height: spacing.xxxl,
     justifyContent: 'center',
-    width: 50,
+    marginRight: spacing.md,
+    width: spacing.xxxl,
+    ...shadows.sm,
   },
-  numberText: {
-    color: COLORS.white,
-    fontSize: 24,
-    fontWeight: 'bold',
+  numberLabel: {
+    color: lightTheme.colors.surface,
+    fontSize: typography.fontSizeMd,
+    fontWeight: typography.fontWeightBold as any,
   },
   stepContent: {
     flex: 1,
-    gap: SPACING.xs,
+  },
+  stepRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: spacing.lg,
   },
   stepTitle: {
-    ...TYPOGRAPHY.body,
-    fontWeight: 'bold',
-  },
-  stepDescription: {
-    ...TYPOGRAPHY.captionMuted,
+    color: lightTheme.colors.text,
+    fontSize: typography.fontSizeMd,
+    fontWeight: typography.fontWeightBold as any,
+    marginBottom: spacing.xs,
   },
 });
+

@@ -1,58 +1,67 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
-import { COLORS, COLOR_VARIANTS, COLOR_VARIANTS_DARK, BORDER_RADIUS, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { Pressable, Text, StyleSheet } from 'react-native';
+import { spacing, borderRadius, shadows, typography } from '../constants/theme';
+import { useColors } from '../hooks';
 
 interface ButtonProps {
   label: string;
   onPress: () => void;
-  variant?: 'primary' | 'black' | 'danger';
-  accessibilityLabel?: string;
+  outline?: boolean;
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  fullWidth?: boolean;
+  style?: any;
 }
 
 export default function Button({ 
-  label, 
-  onPress, 
+  label,
+  onPress,
+  outline,
   variant = 'primary',
-  accessibilityLabel,
+  fullWidth,
+  style,
 }: ButtonProps) {
-  // map component variants to theme color variants where applicable
-  const variantMap: Record<string, keyof typeof COLOR_VARIANTS | undefined> = {
-    primary: 'blue',
-    danger: 'red',
-    black: undefined,
-  };
+  const colors = useColors();
 
-  const mapped = variantMap[variant];
-  let backgroundColor: string = mapped ? COLOR_VARIANTS[mapped] : COLORS.black;
-  let borderColor: string = mapped ? COLOR_VARIANTS_DARK[mapped] : COLORS.black;
+  const variantColor = (colors as any)[variant];
+  const variantDarkColor = (colors as any)[`${variant}Dark`] || colors.border;
+
+  const resolvedBg = outline ? 'transparent' : variantColor;
+  const resolvedBorder = outline ? variantColor : variantDarkColor;
+  const resolvedText = outline ? variantColor : colors.surface;
 
   return (
     <Pressable
       onPress={onPress}
-      style={[styles.button, { backgroundColor, borderColor }]}
-      accessibilityLabel={accessibilityLabel || label}
+      accessibilityLabel={label}
       accessibilityRole="button"
+      style={({ pressed }) => [
+        { backgroundColor: resolvedBg, borderColor: resolvedBorder },
+        fullWidth && { width: '100%' },
+        pressed && styles.pressed,
+        styles.container,
+        style,
+      ]}
     >
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, { color: resolvedText }]}>{label}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
+  container: {
     alignItems: 'center',
-    borderRadius: BORDER_RADIUS.lg,
+    borderRadius: borderRadius.md,
     borderWidth: 1,
-    elevation: 3,
-    paddingHorizontal: SPACING.lg,
-    paddingVertical: SPACING.md,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.12,
-    shadowRadius: 6,
+    justifyContent: 'center',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+    ...shadows.md,
   },
   label: {
-    ...TYPOGRAPHY.body,
-    color: COLORS.white,
+    fontSize: typography.fontSizeMd,
+    fontWeight: typography.fontWeightMedium as any,
+  },
+  pressed: {
+    opacity: 0.85,
   },
 });

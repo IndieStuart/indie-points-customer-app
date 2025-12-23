@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, Alert, StyleSheet } from 'react-native';
 import { CameraView } from 'expo-camera';
-import { SPACING, BORDER_RADIUS, COLORS, CARD_STYLES } from '../constants/theme';
+import { borderRadius, spacing } from '../constants/theme';
 
 interface CameraScannerProps {
   onScan?: (data: string) => void;
@@ -26,29 +26,33 @@ export default function CameraScanner({ onScan }: CameraScannerProps) {
 
   return (
     <View style={styles.container}>
-      <CameraView
-        style={styles.camera}
-        facing="back"
-        onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
-        barcodeScannerSettings={{
-          barcodeTypes: ['qr'],
-        }}
-      />
+      <View style={styles.scannerWrapper}>
+        <CameraView
+          style={styles.camera}
+          facing="back"
+          onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+          barcodeScannerSettings={{
+            barcodeTypes: ['qr'],
+          }}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    ...CARD_STYLES.container,
-    borderColor: COLORS.black,
-    gap: 8,
-    marginBottom: SPACING.lg,
-    overflow: 'hidden',
-    height: 300,
-    padding: 0,
-  },
   camera: {
-    flex: 1,
+    aspectRatio: 1,
+    width: '100%',
+  },
+  container: {
+    alignItems: 'center',
+  },
+  scannerWrapper: {
+    borderColor: '#000',
+    borderRadius: borderRadius.lg,
+    borderWidth: 4,
+    overflow: 'hidden',
+    width: '100%',
   },
 });
