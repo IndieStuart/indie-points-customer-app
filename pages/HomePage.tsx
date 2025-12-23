@@ -25,7 +25,7 @@ export default function HomePage() {
           variant="tertiary"
         />
       </Flex>
-      <FeedbackCard variant="primary" />
+      <FeedbackCard />
     </PageContainer>
   );
 }

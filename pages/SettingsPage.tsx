@@ -1,10 +1,7 @@
 import React from 'react';
-import { PageContainer, PageHeader, Button, UserCard } from '../components';
-import { useAuth } from '../hooks';
+import { PageContainer, PageHeader, UserCard, TakeTourCard, CloseAccountCard } from '../components';
 
 export default function SettingsPage() {
-  const { signOut } = useAuth();
-
   return (
     <PageContainer>
       <PageHeader 
@@ -12,11 +9,8 @@ export default function SettingsPage() {
         subtitle="Manage your account"
       />
       <UserCard />
-      <Button 
-        label="Sign Out"
-        onPress={signOut}
-        variant="tertiary"
-      />
+      <TakeTourCard />
+      <CloseAccountCard />
     </PageContainer>
   );
 }

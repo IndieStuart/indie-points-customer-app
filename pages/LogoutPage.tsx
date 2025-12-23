@@ -16,7 +16,7 @@ export default function LogoutPage({ onSignInAgain }: LogoutPageProps) {
         title="Goodbye"
         subtitle="Thanks for using Indie Points! We hope to see you again soon."
       />
-      <FeedbackCard variant="primary" />
+      <FeedbackCard />
       <Button 
         label="Sign In Again"
         onPress={handleSignInAgain}

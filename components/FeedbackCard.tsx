@@ -3,13 +3,7 @@ import { useFeedback } from '../hooks';
 import Button from './Button';
 import CardWithIcon from './CardWithIcon';
 
-type Variant = 'primary' | 'secondary' | 'tertiary';
-
-interface FeedbackCardProps {
-  variant: Variant;
-}
-
-export default function FeedbackCard({ variant }: FeedbackCardProps) {
+export default function FeedbackCard() {
   const { sendFeedback } = useFeedback();
   
   return (
@@ -17,12 +11,12 @@ export default function FeedbackCard({ variant }: FeedbackCardProps) {
       icon="comment"
       title="We'd love your feedback!"
       subtitle="Help us improve Indie Points"
-      variant={variant}
+      variant="primary"
     >
       <Button
         label="Send Feedback"
         onPress={sendFeedback}
-        variant={variant}
+        variant="primary"
       />
     </CardWithIcon>
   );
