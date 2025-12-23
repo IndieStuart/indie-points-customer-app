@@ -2,6 +2,8 @@
 export { Card } from './Card';
 export { ErrorMessage } from './ErrorMessage';
 export { ColorBar } from './ColorBar';
+export { QRCodeCard } from './QRCodeCard';
+export { InstructionList, type InstructionStep } from './InstructionList';
 export { default as PageContainer } from './PageContainer';
 export { default as PageHeader } from './PageHeader';
 export { default as Button } from './Button';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { COLORS, TYPOGRAPHY, SPACING } from '../constants/theme';
-import { ColorBar } from './';
+import { ColorBar } from './ColorBar';
 import Flex from './Flex';
 
 interface PageHeaderProps {
