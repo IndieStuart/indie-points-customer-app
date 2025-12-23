@@ -15,7 +15,7 @@ export default function SettingsPage() {
       <Button 
         label="Sign Out"
         onPress={signOut}
-        variant="black"
+        variant="danger"
         accessibilityLabel="Sign out of your account"
       />
     </PageContainer>

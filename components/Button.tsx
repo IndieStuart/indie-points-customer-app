@@ -5,7 +5,7 @@ import { COLORS, BORDER_RADIUS, SPACING, TYPOGRAPHY } from '../constants/theme';
 interface ButtonProps {
   label: string;
   onPress: () => void;
-  variant?: 'primary' | 'black';
+  variant?: 'primary' | 'black' | 'danger';
   accessibilityLabel?: string;
 }
 
@@ -15,12 +15,15 @@ export default function Button({
   variant = 'primary',
   accessibilityLabel,
 }: ButtonProps) {
-  const backgroundColor = variant === 'black' ? COLORS.black : COLORS.blue;
+  let backgroundColor: string = COLORS.blue;
+  if (variant === 'black') backgroundColor = COLORS.black;
+  if (variant === 'danger') backgroundColor = COLORS.red;
+  let borderColor: string = COLORS.border;
 
   return (
     <Pressable
       onPress={onPress}
-      style={[styles.button, { backgroundColor }]}
+      style={[styles.button, { backgroundColor, borderColor }]}
       accessibilityLabel={accessibilityLabel || label}
       accessibilityRole="button"
     >
@@ -33,8 +36,14 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     borderRadius: BORDER_RADIUS.lg,
+    borderWidth: 1,
+    elevation: 3,
     paddingHorizontal: SPACING.lg,
     paddingVertical: SPACING.md,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
   },
   label: {
     ...TYPOGRAPHY.body,
