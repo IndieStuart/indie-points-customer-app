@@ -12,6 +12,7 @@ export { default as CardWithIcon } from './CardWithIcon';
 export { default as AppleSignInButton } from './AppleSignInButton';
 export { default as PointsSummaryCard } from './PointsSummaryCard';
 export { default as FeedbackCard } from './FeedbackCard';
+export { default as UserCard } from './UserCard';
 export { default as Flex } from './Flex';
 export { default as EmptyState } from './EmptyState';
 export { default as CameraScanner } from './CameraScanner';

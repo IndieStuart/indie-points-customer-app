@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContainer, PageHeader, Button } from '../components';
+import { PageContainer, PageHeader, Button, UserCard } from '../components';
 import { useAuth } from '../hooks';
 
 export default function SettingsPage() {
@@ -11,6 +11,7 @@ export default function SettingsPage() {
         title="Settings"
         subtitle="Manage your account"
       />
+      <UserCard />
       <Button 
         label="Sign Out"
         onPress={signOut}

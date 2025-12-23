@@ -7,10 +7,10 @@ import { useColors } from '../hooks';
 type Variant = 'primary' | 'secondary' | 'tertiary';
 
 interface CardWithIconProps {
-  title: string;
-  subtitle: string;
-  icon: React.ComponentProps<typeof FontAwesome>['name'];
   children?: React.ReactNode;
+  icon: React.ComponentProps<typeof FontAwesome>['name'];
+  subtitle?: string;
+  title: string;
   variant: Variant;
 }
 
@@ -36,7 +36,9 @@ export default function CardWithIcon({
         </View>
         <View style={styles.text}> 
           <Text style={[styles.title, { color: variantDark }]}>{title}</Text>
-          <Text style={[styles.subtitle, { color: variantDark }]}>{subtitle}</Text>
+          {subtitle ? (
+            <Text style={[styles.subtitle, { color: variantDark }]}>{subtitle}</Text>
+          ) : null}
         </View>
       </View>
       {children && <View style={styles.children}>{children}</View>}
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
     backgroundColor: lightTheme.colors.surface,
     borderRadius: borderRadius.md,
     borderWidth: 1,
-    marginBottom: spacing.sm,
     padding: spacing.md,
     ...shadows.md,
   },
