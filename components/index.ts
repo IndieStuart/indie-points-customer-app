@@ -14,3 +14,5 @@ export { default as PointsSummaryCard } from './PointsSummaryCard';
 export { default as FeedbackCard } from './FeedbackCard';
 export { default as Flex } from './Flex';
 export { default as EmptyState } from './EmptyState';
+export { default as CameraScanner } from './CameraScanner';
+export { default as CameraPermissionRequest } from './CameraPermissionRequest';
