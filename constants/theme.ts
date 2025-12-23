@@ -20,6 +20,13 @@ export const COLOR_VARIANTS = {
 	red: COLORS.red,
 } as const;
 
+// Precomputed darker shades for UI elements (used for borders/highlights)
+export const COLOR_VARIANTS_DARK = {
+	blue: '#2B6CB0', // darker than #3182CE
+	yellow: '#B7791F', // darker than #D69E2E
+	red: '#C53030', // darker than #E53E3E
+} as const;
+
 export const SPACING = {
 	xs: 4,
 	sm: 8,

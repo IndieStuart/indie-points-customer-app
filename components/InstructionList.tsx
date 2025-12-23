@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS, COLOR_VARIANTS, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
+import { COLORS, COLOR_VARIANTS, COLOR_VARIANTS_DARK, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
 
 export interface InstructionStep {
   number: number;
@@ -14,7 +14,12 @@ interface InstructionStepProps extends InstructionStep {}
 function Step({ number, title, description, color }: InstructionStepProps) {
   return (
     <View style={styles.step}>
-      <View style={[styles.numberCircle, { backgroundColor: COLOR_VARIANTS[color] }]}>
+      <View
+        style={[
+          styles.numberCircle,
+          { backgroundColor: COLOR_VARIANTS[color], borderColor: COLOR_VARIANTS_DARK[color], borderWidth: 1 },
+        ]}
+      >
         <Text style={styles.numberText}>{number}</Text>
       </View>
       <View style={styles.stepContent}>

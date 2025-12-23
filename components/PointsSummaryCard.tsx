@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLOR_VARIANTS, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
+import { COLOR_VARIANTS, COLOR_VARIANTS_DARK, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
 
 interface PointsSummaryCardProps {
   label: string;
@@ -57,7 +57,7 @@ const VARIANT_BORDER: Record<ColorVariant, any> = StyleSheet.create({
 });
 
 const VARIANT_PILL: Record<ColorVariant, any> = StyleSheet.create({
-  blue: { backgroundColor: COLOR_VARIANTS.blue },
-  yellow: { backgroundColor: COLOR_VARIANTS.yellow },
-  red: { backgroundColor: COLOR_VARIANTS.red },
+  blue: { backgroundColor: COLOR_VARIANTS.blue, borderColor: COLOR_VARIANTS_DARK.blue, borderWidth: 1 },
+  yellow: { backgroundColor: COLOR_VARIANTS.yellow, borderColor: COLOR_VARIANTS_DARK.yellow, borderWidth: 1 },
+  red: { backgroundColor: COLOR_VARIANTS.red, borderColor: COLOR_VARIANTS_DARK.red, borderWidth: 1 },
 });

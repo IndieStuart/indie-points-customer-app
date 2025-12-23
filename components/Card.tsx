@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS, COLOR_VARIANTS, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
+import { COLORS, COLOR_VARIANTS, COLOR_VARIANTS_DARK, CARD_STYLES, BORDER_RADIUS, SPACING, TYPOGRAPHY, type ColorVariant } from '../constants/theme';
 
 interface CardProps {
   title: string;
@@ -10,10 +10,13 @@ interface CardProps {
 
 export function Card({ title, description, variant }: CardProps) {
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, { borderColor: COLOR_VARIANTS[variant] }]}>
       <View style={styles.row}>
         <View
-          style={[styles.iconWrapper, { backgroundColor: COLOR_VARIANTS[variant] }]}
+          style={[
+            styles.iconWrapper,
+            { backgroundColor: COLOR_VARIANTS[variant], borderColor: COLOR_VARIANTS_DARK[variant], borderWidth: 1 },
+          ]}
         />
         <View style={styles.content}>
           <Text style={styles.title}>{title}</Text>

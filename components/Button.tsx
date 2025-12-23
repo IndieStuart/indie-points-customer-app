@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { COLORS, BORDER_RADIUS, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, COLOR_VARIANTS, COLOR_VARIANTS_DARK, BORDER_RADIUS, SPACING, TYPOGRAPHY } from '../constants/theme';
 
 interface ButtonProps {
   label: string;
@@ -15,10 +15,16 @@ export default function Button({
   variant = 'primary',
   accessibilityLabel,
 }: ButtonProps) {
-  let backgroundColor: string = COLORS.blue;
-  if (variant === 'black') backgroundColor = COLORS.black;
-  if (variant === 'danger') backgroundColor = COLORS.red;
-  let borderColor: string = COLORS.border;
+  // map component variants to theme color variants where applicable
+  const variantMap: Record<string, keyof typeof COLOR_VARIANTS | undefined> = {
+    primary: 'blue',
+    danger: 'red',
+    black: undefined,
+  };
+
+  const mapped = variantMap[variant];
+  let backgroundColor: string = mapped ? COLOR_VARIANTS[mapped] : COLORS.black;
+  let borderColor: string = mapped ? COLOR_VARIANTS_DARK[mapped] : COLORS.black;
 
   return (
     <Pressable

@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   },
   qrContainer: {
     ...CARD_STYLES.container,
+    borderColor: COLORS.black,
     alignItems: 'center',
     justifyContent: 'center',
     padding: SPACING.xl,
