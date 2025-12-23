@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   title: {
     ...TYPOGRAPHY.h1,
     color: COLORS.black,
-    marginTop: SPACING.xl,
+    marginTop: SPACING.xxl,
     textAlign: 'center',
   },
   subtitle: {
