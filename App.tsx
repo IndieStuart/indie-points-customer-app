@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
-import { AuthProvider, useAuth, ThemeProvider, useTheme } from './hooks';
+import { AuthProvider, useAuth, ThemeProvider, useTheme, TourProvider } from './hooks';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import BottomTabNavigator from './components/BottomTabNavigator';
@@ -48,7 +48,9 @@ export default function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <AppContent />
+        <TourProvider>
+          <AppContent />
+        </TourProvider>
       </AuthProvider>
     </ThemeProvider>
   );

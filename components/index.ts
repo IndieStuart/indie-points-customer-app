@@ -19,3 +19,4 @@ export { default as Flex } from './Flex';
 export { default as EmptyState } from './EmptyState';
 export { default as CameraScanner } from './CameraScanner';
 export { default as CameraPermissionRequest } from './CameraPermissionRequest';
+export { default as TourOverlay } from './TourOverlay';

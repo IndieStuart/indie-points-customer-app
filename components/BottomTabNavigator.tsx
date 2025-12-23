@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useHapticFeedback } from '../hooks';
+import TourOverlay from './TourOverlay';
 
 // Import pages
 import HomePage from '../pages/HomePage';
@@ -60,6 +61,7 @@ export default function BottomTabNavigator() {
           />
         ))}
       </Tab.Navigator>
+      <TourOverlay />
     </NavigationContainer>
   );
 }

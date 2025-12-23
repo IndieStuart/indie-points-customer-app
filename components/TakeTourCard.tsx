@@ -1,12 +1,10 @@
 import React from 'react';
-import { Alert } from 'react-native';
 import CardWithIcon from './CardWithIcon';
 import Button from './Button';
+import { useTour } from '../hooks/useTour';
 
 export default function TakeTourCard() {
-  const handleTakeTour = () => {
-    Alert.alert('Coming Soon', 'The tour feature is coming soon!');
-  };
+  const { startTour } = useTour();
 
   return (
     <CardWithIcon
@@ -17,7 +15,7 @@ export default function TakeTourCard() {
     >
       <Button 
         label="Start Tour"
-        onPress={handleTakeTour}
+        onPress={startTour}
         variant="secondary"
       />
     </CardWithIcon>
