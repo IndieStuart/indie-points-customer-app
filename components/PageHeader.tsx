@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   subtitle: {
     ...TYPOGRAPHY.h2,
     color: COLORS.gray,
-    margin: SPACING.md,
+    margin: SPACING.lg,
     textAlign: 'center',
   },
 });
