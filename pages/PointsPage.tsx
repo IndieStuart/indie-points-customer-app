@@ -5,7 +5,6 @@ import {
   PageHeader,
   InstructionList,
   type InstructionStep,
-  Flex,
 } from '../components';
 import { QRCodeCard } from '../components/QRCodeCard';
 

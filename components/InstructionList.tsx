@@ -1,12 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {
-  borderRadius,
-  lightTheme,
-  shadows,
-  spacing,
-  typography,
-} from '../constants/theme';
+import { lightTheme, shadows, spacing, typography } from '../constants/theme';
 import { useColors } from '../hooks';
 
 type Variant = 'primary' | 'secondary' | 'tertiary';
@@ -52,8 +46,7 @@ function Step({
 }
 
 export function InstructionList({ steps, title }: InstructionListProps) {
-  const colors = useColors();
-  const borderColor = (colors as any).border || lightTheme.colors.border;
+  // `Step` handles color via `useColors()`; no local colors needed here
 
   return (
     <View>

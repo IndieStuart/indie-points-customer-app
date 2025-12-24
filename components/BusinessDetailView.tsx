@@ -6,7 +6,7 @@ import TransactionCard from './TransactionCard';
 import RewardCard from './RewardCard';
 import type { Transaction, Reward } from '../types';
 import { spacing, typography } from '../constants/theme';
-import { useColors, useHapticFeedback } from '../hooks';
+import { useColors } from '../hooks';
 
 type DetailTabType = 'transactions' | 'rewards';
 
@@ -18,19 +18,16 @@ interface BusinessDetailViewProps {
 }
 
 export default function BusinessDetailView({
-  businessId,
+  businessId: _businessId,
   transactions,
   rewards,
-  onBack,
+  onBack: _onBack,
 }: BusinessDetailViewProps) {
   const [detailTab, setDetailTab] = useState<DetailTabType>('transactions');
   const colors = useColors();
-  const { triggerSelection } = useHapticFeedback();
+  // haptic feedback not required here; parent handles back action and haptics
 
-  const handleBack = () => {
-    triggerSelection();
-    onBack();
-  };
+  // onBack is used directly by the parent; keep haptics in parent if needed
 
   return (
     <View style={styles.detailContainer}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Alert, StyleSheet } from 'react-native';
 import { CameraView } from 'expo-camera';
-import { borderRadius, spacing } from '../constants/theme';
+import { borderRadius } from '../constants/theme';
 
 interface CameraScannerProps {
   onScan?: (data: string) => void;
@@ -11,7 +11,7 @@ export default function CameraScanner({ onScan }: CameraScannerProps) {
   const [scanned, setScanned] = useState(false);
 
   const handleBarCodeScanned = ({
-    type,
+    type: _type,
     data,
   }: {
     type: string;

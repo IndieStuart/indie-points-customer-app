@@ -6,7 +6,7 @@ export const useHapticFeedback = () => {
       await Haptics.selectionAsync();
     } catch (error) {
       // Silently fail if haptics not supported
-      console.debug('Haptic feedback not available:', error);
+      console.warn('Haptic feedback not available:', error);
     }
   };
 
@@ -16,7 +16,7 @@ export const useHapticFeedback = () => {
     try {
       await Haptics.impactAsync(style);
     } catch (error) {
-      console.debug('Haptic feedback not available:', error);
+      console.warn('Haptic feedback not available:', error);
     }
   };
 
@@ -27,7 +27,7 @@ export const useHapticFeedback = () => {
     try {
       await Haptics.notificationAsync(type);
     } catch (error) {
-      console.debug('Haptic feedback not available:', error);
+      console.warn('Haptic feedback not available:', error);
     }
   };
 
