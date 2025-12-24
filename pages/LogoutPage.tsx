@@ -12,12 +12,12 @@ export default function LogoutPage({ onSignInAgain }: LogoutPageProps) {
 
   return (
     <PageContainer>
-      <PageHeader 
+      <PageHeader
         title="Goodbye"
         subtitle="Thanks for using Indie Points! We hope to see you again soon."
       />
       <FeedbackCard />
-      <Button 
+      <Button
         label="Sign In Again"
         onPress={handleSignInAgain}
         variant="primary"

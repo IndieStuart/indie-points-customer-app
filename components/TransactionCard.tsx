@@ -10,7 +10,10 @@ interface TransactionCardProps {
   onPress?: () => void;
 }
 
-export default function TransactionCard({ transaction, onPress }: TransactionCardProps) {
+export default function TransactionCard({
+  transaction,
+  onPress,
+}: TransactionCardProps) {
   const colors = useColors();
   const { triggerSelection } = useHapticFeedback();
 
@@ -38,7 +41,9 @@ export default function TransactionCard({ transaction, onPress }: TransactionCar
     >
       <View style={styles.transactionDetails}>
         <View style={styles.transactionRow}>
-          <Text style={[styles.transactionLabel, { color: colors.textSecondary }]}>
+          <Text
+            style={[styles.transactionLabel, { color: colors.textSecondary }]}
+          >
             Amount:
           </Text>
           <Text style={[styles.transactionValue, { color: colors.text }]}>
@@ -46,7 +51,9 @@ export default function TransactionCard({ transaction, onPress }: TransactionCar
           </Text>
         </View>
         <View style={styles.transactionRow}>
-          <Text style={[styles.transactionLabel, { color: colors.textSecondary }]}>
+          <Text
+            style={[styles.transactionLabel, { color: colors.textSecondary }]}
+          >
             Points {transaction.type === 'earn' ? 'earned' : 'redeemed'}:
           </Text>
           <Text style={[styles.transactionValue, { color: colors.text }]}>

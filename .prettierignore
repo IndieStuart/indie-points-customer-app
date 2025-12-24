@@ -1,0 +1,17 @@
+.expo/
+node_modules/
+dist/
+build/
+android/
+ios/
+.git/
+*.lock
+*.log
+coverage/
+*.png
+*.jpg
+*.jpeg
+*.gif
+assets/images/**/*
+!.prettierrc
+!package.json

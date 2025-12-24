@@ -11,7 +11,7 @@ interface PageHeaderProps {
   title: string;
 }
 
-export default function PageHeader({ 
+export default function PageHeader({
   onBack,
   subtitle,
   title,

@@ -8,7 +8,11 @@ interface EmptyStateProps {
   title: string;
 }
 
-export default function EmptyState({ description, icon, title }: EmptyStateProps) {
+export default function EmptyState({
+  description,
+  icon,
+  title,
+}: EmptyStateProps) {
   return (
     <View>
       <FontAwesome name={icon} size={64} />

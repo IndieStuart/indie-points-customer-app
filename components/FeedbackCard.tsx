@@ -5,7 +5,7 @@ import CardWithIcon from './CardWithIcon';
 
 export default function FeedbackCard() {
   const { sendFeedback } = useFeedback();
-  
+
   return (
     <CardWithIcon
       icon="comment"
@@ -13,11 +13,7 @@ export default function FeedbackCard() {
       subtitle="Help us improve Indie Points"
       variant="primary"
     >
-      <Button
-        label="Send Feedback"
-        onPress={sendFeedback}
-        variant="primary"
-      />
+      <Button label="Send Feedback" onPress={sendFeedback} variant="primary" />
     </CardWithIcon>
   );
 }

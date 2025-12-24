@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "expo start --clear",
     "android": "expo start --android",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md,css,scss,mdx}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,json,md,css,scss,mdx}\"",
     "ios": "expo start --ios",
+    "start": "expo start --clear",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@types/react": "~19.0.10",
     "jsonwebtoken": "^9.0.3",
+    "prettier": "^2.8.8",
     "typescript": "5.8.3"
   },
   "private": true

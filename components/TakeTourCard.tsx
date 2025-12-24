@@ -13,11 +13,7 @@ export default function TakeTourCard() {
       subtitle="Learn how to use Indie Points"
       variant="secondary"
     >
-      <Button 
-        label="Start Tour"
-        onPress={startTour}
-        variant="secondary"
-      />
+      <Button label="Start Tour" onPress={startTour} variant="secondary" />
     </CardWithIcon>
   );
 }

@@ -8,11 +8,11 @@ export default function UserCard() {
   const user = session?.user as any | undefined;
 
   const email = user?.email || 'Unknown user';
-  const signUpDate = user?.created_at 
-    ? new Date(user.created_at).toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+  const signUpDate = user?.created_at
+    ? new Date(user.created_at).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
       })
     : undefined;
 
@@ -23,11 +23,7 @@ export default function UserCard() {
       subtitle={signUpDate ? `Member since ${signUpDate}` : undefined}
       variant="primary"
     >
-      <Button 
-        label="Sign Out"
-        onPress={signOut}
-        variant="primary"
-      />
+      <Button label="Sign Out" onPress={signOut} variant="primary" />
     </CardWithIcon>
   );
 }

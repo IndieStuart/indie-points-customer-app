@@ -25,7 +25,12 @@ const TAB_SCREENS: TabConfig[] = [
   { name: 'Home', component: HomePage, icon: 'home', title: 'Home' },
   { name: 'Points', component: PointsPage, icon: 'gift', title: 'Points' },
   { name: 'Scan', component: ScanPage, icon: 'camera', title: 'Scan' },
-  { name: 'History', component: HistoryPage, icon: 'file-text-o', title: 'History' },
+  {
+    name: 'History',
+    component: HistoryPage,
+    icon: 'file-text-o',
+    title: 'History',
+  },
   { name: 'Settings', component: SettingsPage, icon: 'cog', title: 'Settings' },
 ];
 
@@ -53,7 +58,9 @@ export default function BottomTabNavigator() {
             component={tab.component}
             options={{
               title: tab.title,
-              tabBarIcon: ({ color }) => <TabBarIcon name={tab.icon} color={color} />,
+              tabBarIcon: ({ color }) => (
+                <TabBarIcon name={tab.icon} color={color} />
+              ),
             }}
             listeners={{
               tabPress: triggerSelection,

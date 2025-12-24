@@ -21,7 +21,9 @@ export const useAuthError = () => {
     setError(null);
   };
 
-  const withLoading = async <T,>(fn: () => Promise<T>): Promise<T | undefined> => {
+  const withLoading = async <T>(
+    fn: () => Promise<T>,
+  ): Promise<T | undefined> => {
     try {
       setIsLoading(true);
       clearError();

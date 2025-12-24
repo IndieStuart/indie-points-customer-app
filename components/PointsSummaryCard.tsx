@@ -11,16 +11,22 @@ interface PointsSummaryCardProps {
   variant?: Variant;
 }
 
-export default function PointsSummaryCard({ label, value, variant = 'primary' }: PointsSummaryCardProps) {
+export default function PointsSummaryCard({
+  label,
+  value,
+  variant = 'primary',
+}: PointsSummaryCardProps) {
   const colors = useColors();
   const backgroundColor = (colors as any)[variant];
   const borderColor = (colors as any)[`${variant}Dark`];
   const textColor = (colors as any).surface;
 
   return (
-    <View style={[styles.container, { backgroundColor, borderColor }]}> 
+    <View style={[styles.container, { backgroundColor, borderColor }]}>
       <View style={styles.content}>
-        <Text style={[styles.label, { color: textColor }]} numberOfLines={1}>{label}</Text>
+        <Text style={[styles.label, { color: textColor }]} numberOfLines={1}>
+          {label}
+        </Text>
         <Text style={[styles.value, { color: textColor }]}>{value}</Text>
       </View>
     </View>

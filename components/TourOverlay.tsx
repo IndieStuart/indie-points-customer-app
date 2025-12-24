@@ -8,13 +8,8 @@ import Button from './Button';
 import { spacing, typography } from '../constants/theme';
 
 export default function TourOverlay() {
-  const {
-    isActive,
-    currentStep,
-    totalSteps,
-    currentTourStep,
-    nextStep,
-  } = useTour();
+  const { isActive, currentStep, totalSteps, currentTourStep, nextStep } =
+    useTour();
   const colors = useColors();
   const navigation = useNavigation();
 
@@ -38,11 +33,8 @@ export default function TourOverlay() {
     >
       <View style={styles.overlay}>
         {/* Semi-transparent background */}
-        <View 
-          style={[
-            styles.backdrop,
-            { backgroundColor: 'rgba(0, 0, 0, 0.2)' }
-          ]} 
+        <View
+          style={[styles.backdrop, { backgroundColor: 'rgba(0, 0, 0, 0.2)' }]}
         />
 
         {/* Tour content card positioned at bottom */}
@@ -57,7 +49,7 @@ export default function TourOverlay() {
               {currentTourStep.description}
             </Text>
 
-            <Button 
+            <Button
               label={currentStep < totalSteps - 1 ? 'Next' : 'Finish'}
               onPress={nextStep}
               variant="secondary"

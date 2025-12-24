@@ -8,7 +8,7 @@ interface InfoCardProps {
   title: string;
 }
 
-export default function InfoCard({ 
+export default function InfoCard({
   children,
   icon,
   subtitle,

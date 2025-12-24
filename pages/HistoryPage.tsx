@@ -22,7 +22,9 @@ type TabType = 'businesses' | 'transactions';
 
 export default function HistoryPage() {
   const [activeTab, setActiveTab] = useState<TabType>('businesses');
-  const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null);
+  const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(
+    null,
+  );
 
   if (selectedBusiness) {
     const transactions = FAKE_BUSINESS_TRANSACTIONS[selectedBusiness.id] || [];
@@ -51,18 +53,17 @@ export default function HistoryPage() {
       <PageHeader title="History" subtitle="View your transaction history" />
 
       <Flex direction="row">
-          <TabButton
-            active={activeTab === 'businesses'}
-            label="Businesses"
-            onPress={() => setActiveTab('businesses')}
-          />
-          <TabButton
-            active={activeTab === 'transactions'}
-            label="Transactions"
-            onPress={() => setActiveTab('transactions')}
-          />
-        </Flex>
-      
+        <TabButton
+          active={activeTab === 'businesses'}
+          label="Businesses"
+          onPress={() => setActiveTab('businesses')}
+        />
+        <TabButton
+          active={activeTab === 'transactions'}
+          label="Transactions"
+          onPress={() => setActiveTab('transactions')}
+        />
+      </Flex>
 
       {activeTab === 'businesses' ? (
         <Flex gap={spacing.sm}>
@@ -77,7 +78,9 @@ export default function HistoryPage() {
       ) : (
         <Flex gap={spacing.sm}>
           {FAKE_TRANSACTIONS.map((transaction) => {
-            const business = FAKE_BUSINESSES.find((b) => b.id === transaction.businessId);
+            const business = FAKE_BUSINESSES.find(
+              (b) => b.id === transaction.businessId,
+            );
             return (
               <TransactionCard
                 key={transaction.id}
@@ -91,4 +94,3 @@ export default function HistoryPage() {
     </PageContainer>
   );
 }
- 

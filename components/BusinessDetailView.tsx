@@ -47,7 +47,10 @@ export default function BusinessDetailView({
         />
       </View>
 
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
         {detailTab === 'transactions' ? (
           <Flex gap={spacing.sm}>
             {transactions.map((transaction) => (

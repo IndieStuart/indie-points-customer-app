@@ -18,10 +18,13 @@ export default function CloseAccountCard() {
           style: 'destructive',
           onPress: () => {
             // TODO: Implement account closure
-            Alert.alert('Coming Soon', 'Account closure feature is coming soon!');
+            Alert.alert(
+              'Coming Soon',
+              'Account closure feature is coming soon!',
+            );
           },
         },
-      ]
+      ],
     );
   };
 
@@ -32,7 +35,7 @@ export default function CloseAccountCard() {
       subtitle="Permanently delete your account, lose all your points and rewards, and erase all data forever"
       variant="tertiary"
     >
-      <Button 
+      <Button
         label="Close Account"
         onPress={handleCloseAccount}
         variant="tertiary"

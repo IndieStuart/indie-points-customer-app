@@ -8,11 +8,10 @@ interface AppleSignInButtonProps {
   onPress: () => void;
 }
 
-export default function AppleSignInButton({ 
+export default function AppleSignInButton({
   loading = false,
   onPress,
 }: AppleSignInButtonProps) {
-
   if (Platform.OS !== 'ios') {
     return null;
   }
@@ -27,13 +26,13 @@ export default function AppleSignInButton({
       <View style={styles.container}>
         <AppleAuthentication.AppleAuthenticationButton
           buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-          buttonType={AppleAuthentication.AppleAuthenticationButtonType.CONTINUE}
+          buttonType={
+            AppleAuthentication.AppleAuthenticationButtonType.CONTINUE
+          }
           onPress={handlePress}
           style={styles.button}
         />
-        {loading && (
-          <ActivityIndicator style={styles.loader} />
-        )}
+        {loading && <ActivityIndicator style={styles.loader} />}
       </View>
     </View>
   );

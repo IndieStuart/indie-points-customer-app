@@ -14,7 +14,10 @@ export function QRCodeCard({ userId }: QRCodeCardProps) {
   const onLayout = (e: LayoutChangeEvent) => {
     const fullWidth = e.nativeEvent.layout.width;
     const borderWidth = 4;
-    const innerWidth = Math.max(0, Math.floor(fullWidth - spacing.md * 2 - borderWidth * 2));
+    const innerWidth = Math.max(
+      0,
+      Math.floor(fullWidth - spacing.md * 2 - borderWidth * 2),
+    );
     setContainerWidth(innerWidth);
   };
 

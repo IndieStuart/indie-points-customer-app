@@ -25,7 +25,9 @@ export default function BusinessCard({ business, onPress }: BusinessCardProps) {
         compact={true}
         icon="shopping-bag"
         showChevron={true}
-        subtitle={`Last visit: ${new Date(business.lastVisit).toLocaleDateString()}`}
+        subtitle={`Last visit: ${new Date(
+          business.lastVisit,
+        ).toLocaleDateString()}`}
         title={business.name}
         variant="primary"
         transparent={true}
@@ -33,7 +35,7 @@ export default function BusinessCard({ business, onPress }: BusinessCardProps) {
         <View style={styles.statsContainer}>
           <View style={styles.statRow}>
             <Text style={[styles.statLabel, { color: colors.textSecondary }]}>
-              Amount: 
+              Amount:
             </Text>
             <Text style={[styles.statValue, { color: colors.text }]}>
               £{business.totalSpent.toFixed(2)}

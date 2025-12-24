@@ -6,13 +6,17 @@ interface CameraPermissionRequestProps {
   onRequestPermission: () => void;
 }
 
-export default function CameraPermissionRequest({ onRequestPermission }: CameraPermissionRequestProps) {
+export default function CameraPermissionRequest({
+  onRequestPermission,
+}: CameraPermissionRequestProps) {
   return (
     <View>
-      <Text>
-        We need your permission to use the camera
-      </Text>
-      <Button onPress={onRequestPermission} variant="primary" label='Grant Permission' />
+      <Text>We need your permission to use the camera</Text>
+      <Button
+        onPress={onRequestPermission}
+        variant="primary"
+        label="Grant Permission"
+      />
     </View>
   );
 }

@@ -1,5 +1,12 @@
 import React from 'react';
-import { Card, ErrorMessage, PageContainer, PageHeader, Flex, AppleSignInButton } from '../components';
+import {
+  Card,
+  ErrorMessage,
+  PageContainer,
+  PageHeader,
+  Flex,
+  AppleSignInButton,
+} from '../components';
 import { useAuth, useAuthError } from '../hooks';
 
 export default function LoginPage() {
@@ -12,7 +19,7 @@ export default function LoginPage() {
 
   return (
     <PageContainer>
-      <PageHeader 
+      <PageHeader
         title="Indie Points"
         subtitle="Earn points, redeem rewards, support local businesses"
       />

@@ -14,7 +14,7 @@ export default function RewardCard({ reward }: RewardCardProps) {
 
   return (
     <CardWithIcon
-    compact={true}
+      compact={true}
       icon="gift"
       subtitle={reward.description}
       title={reward.name}
@@ -23,12 +23,20 @@ export default function RewardCard({ reward }: RewardCardProps) {
     >
       <View style={styles.rewardDetails}>
         <View style={styles.rewardRow}>
-          <Text style={[styles.rewardLabel, { color: colors.textSecondary }]}>Points required:</Text>
-          <Text style={[styles.rewardValue, { color: colors.text }]}>{reward.pointsRequired}</Text>
+          <Text style={[styles.rewardLabel, { color: colors.textSecondary }]}>
+            Points required:
+          </Text>
+          <Text style={[styles.rewardValue, { color: colors.text }]}>
+            {reward.pointsRequired}
+          </Text>
         </View>
         <View style={styles.rewardRow}>
-          <Text style={[styles.rewardLabel, { color: colors.textSecondary }]}>Status:</Text>
-          <Text style={[styles.rewardValue, { color: colors.text }]}>{reward.available ? 'Available' : 'Not enough points'}</Text>
+          <Text style={[styles.rewardLabel, { color: colors.textSecondary }]}>
+            Status:
+          </Text>
+          <Text style={[styles.rewardValue, { color: colors.text }]}>
+            {reward.available ? 'Available' : 'Not enough points'}
+          </Text>
         </View>
       </View>
     </CardWithIcon>

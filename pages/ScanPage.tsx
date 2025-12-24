@@ -1,6 +1,12 @@
 import React from 'react';
 import { useCameraPermissions } from 'expo-camera';
-import { PageContainer, PageHeader, InstructionList, CameraScanner, CameraPermissionRequest } from '../components';
+import {
+  PageContainer,
+  PageHeader,
+  InstructionList,
+  CameraScanner,
+  CameraPermissionRequest,
+} from '../components';
 import type { InstructionStep } from '../components/InstructionList';
 
 const instructions: InstructionStep[] = [
@@ -30,11 +36,10 @@ export default function ScanPage() {
   if (!permission?.granted) {
     return (
       <PageContainer>
-        <PageHeader 
-          title="Scan"
-          subtitle="Scan a business QR code"
-        />
-        {permission && <CameraPermissionRequest onRequestPermission={requestPermission} />}
+        <PageHeader title="Scan" subtitle="Scan a business QR code" />
+        {permission && (
+          <CameraPermissionRequest onRequestPermission={requestPermission} />
+        )}
         <InstructionList
           steps={instructions}
           title="How to claim a bonus point:"
@@ -45,10 +50,7 @@ export default function ScanPage() {
 
   return (
     <PageContainer>
-      <PageHeader 
-        title="Scan"
-        subtitle="Scan a business QR code"
-      />
+      <PageHeader title="Scan" subtitle="Scan a business QR code" />
       <CameraScanner />
       <InstructionList
         steps={instructions}

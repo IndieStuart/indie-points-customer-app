@@ -1,6 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { borderRadius, lightTheme, shadows, spacing, typography } from '../constants/theme';
+import {
+  borderRadius,
+  lightTheme,
+  shadows,
+  spacing,
+  typography,
+} from '../constants/theme';
 import { useColors } from '../hooks';
 
 type Variant = 'primary' | 'secondary' | 'tertiary';
@@ -17,14 +23,24 @@ interface InstructionListProps {
   title: string;
 }
 
-function Step({ description, number, title, variant = 'primary' }: InstructionStep) {
+function Step({
+  description,
+  number,
+  title,
+  variant = 'primary',
+}: InstructionStep) {
   const colors = useColors();
   const bg = (colors as any)[variant];
   const border = (colors as any)[`${variant}Dark`];
 
   return (
     <View style={styles.stepRow}>
-      <View style={[styles.numberCircle, { backgroundColor: bg, borderColor: border }]}> 
+      <View
+        style={[
+          styles.numberCircle,
+          { backgroundColor: bg, borderColor: border },
+        ]}
+      >
         <Text style={styles.numberLabel}>{number}</Text>
       </View>
       <View style={styles.stepContent}>
@@ -40,7 +56,7 @@ export function InstructionList({ steps, title }: InstructionListProps) {
   const borderColor = (colors as any).border || lightTheme.colors.border;
 
   return (
-    <View> 
+    <View>
       <Text style={styles.header}>{title}</Text>
       {steps.map((step) => (
         <Step key={step.number} {...step} />
@@ -90,4 +106,3 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xs,
   },
 });
-

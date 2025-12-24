@@ -9,7 +9,7 @@ interface FlexProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export default function Flex({ 
+export default function Flex({
   children,
   columns,
   direction = 'column',
@@ -22,10 +22,15 @@ export default function Flex({
   if (isRowWithColumns) {
     // Multi-column row layout (replaces Columns)
     return (
-      <View style={[styles.row, style]}
-      >
+      <View style={[styles.row, style]}>
         {items.map((child, idx) => (
-          <View key={`flex-col-${idx}`} style={[styles.column, idx < items.length - 1 && { marginRight: gap }]}> 
+          <View
+            key={`flex-col-${idx}`}
+            style={[
+              styles.column,
+              idx < items.length - 1 && { marginRight: gap },
+            ]}
+          >
             {child}
           </View>
         ))}
@@ -38,7 +43,13 @@ export default function Flex({
     return (
       <View style={[styles.row, style]}>
         {items.map((child, idx) => (
-          <View key={`flex-row-${idx}`} style={[styles.rowChild, idx < items.length - 1 && { marginRight: gap }]}> 
+          <View
+            key={`flex-row-${idx}`}
+            style={[
+              styles.rowChild,
+              idx < items.length - 1 && { marginRight: gap },
+            ]}
+          >
             {child}
           </View>
         ))}
@@ -50,7 +61,10 @@ export default function Flex({
   return (
     <View style={[styles.column, style]}>
       {items.map((child, idx) => (
-        <View key={`flex-col-${idx}`} style={idx < items.length - 1 ? { marginBottom: gap } : undefined}>
+        <View
+          key={`flex-col-${idx}`}
+          style={idx < items.length - 1 ? { marginBottom: gap } : undefined}
+        >
           {child}
         </View>
       ))}

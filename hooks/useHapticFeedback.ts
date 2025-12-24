@@ -10,7 +10,9 @@ export const useHapticFeedback = () => {
     }
   };
 
-  const triggerImpact = async (style: Haptics.ImpactFeedbackStyle = Haptics.ImpactFeedbackStyle.Medium) => {
+  const triggerImpact = async (
+    style: Haptics.ImpactFeedbackStyle = Haptics.ImpactFeedbackStyle.Medium,
+  ) => {
     try {
       await Haptics.impactAsync(style);
     } catch (error) {
@@ -18,7 +20,10 @@ export const useHapticFeedback = () => {
     }
   };
 
-  const triggerNotification = async (type: Haptics.NotificationFeedbackType = Haptics.NotificationFeedbackType.Success) => {
+  const triggerNotification = async (
+    type: Haptics.NotificationFeedbackType = Haptics.NotificationFeedbackType
+      .Success,
+  ) => {
     try {
       await Haptics.notificationAsync(type);
     } catch (error) {

@@ -1,11 +1,16 @@
 import React from 'react';
 import { useAuth } from '../hooks';
-import { PageContainer, PageHeader, InstructionList, type InstructionStep, Flex } from '../components';
+import {
+  PageContainer,
+  PageHeader,
+  InstructionList,
+  type InstructionStep,
+  Flex,
+} from '../components';
 import { QRCodeCard } from '../components/QRCodeCard';
 
 export default function PointsPage() {
   const { session } = useAuth();
-  
 
   const userId = session?.user?.id || 'guest-user';
 
@@ -19,7 +24,8 @@ export default function PointsPage() {
     {
       number: 2,
       title: 'Show your QR code',
-      description: 'Let the business scan your unique QR code before or after purchase',
+      description:
+        'Let the business scan your unique QR code before or after purchase',
       variant: 'secondary',
     },
     {
@@ -32,15 +38,9 @@ export default function PointsPage() {
 
   return (
     <PageContainer>
-      <PageHeader 
-        title="Points"
-        subtitle="Your loyalty card"
-      />
+      <PageHeader title="Points" subtitle="Your loyalty card" />
       <QRCodeCard userId={userId} />
-      <InstructionList
-        steps={steps}
-        title="How to earn points"
-      />
+      <InstructionList steps={steps} title="How to earn points" />
     </PageContainer>
   );
 }

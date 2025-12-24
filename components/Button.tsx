@@ -12,7 +12,7 @@ interface ButtonProps {
   style?: any;
 }
 
-export default function Button({ 
+export default function Button({
   label,
   onPress,
   outline,

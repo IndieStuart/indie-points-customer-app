@@ -1,7 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { lightTheme, spacing, borderRadius, shadows, typography } from '../constants/theme';
+import {
+  lightTheme,
+  spacing,
+  borderRadius,
+  shadows,
+  typography,
+} from '../constants/theme';
 import { useColors } from '../hooks';
 
 type Variant = 'primary' | 'secondary' | 'tertiary';
@@ -29,28 +35,63 @@ export default function CardWithIcon({
 }: CardWithIconProps) {
   const colors = useColors();
   const borderColor = (colors as any)[variant];
-  const backgroundColor = transparent ? 'transparent' : (colors as any)[`${variant}Light`];
+  const backgroundColor = transparent
+    ? 'transparent'
+    : (colors as any)[`${variant}Light`];
   const variantColor = (colors as any)[variant];
   const variantDark = (colors as any)[`${variant}Dark`];
   const iconColor = colors.surface;
 
   return (
-    <View style={[compact ? styles.containerCompact : styles.container, { borderColor, backgroundColor }]}> 
+    <View
+      style={[
+        compact ? styles.containerCompact : styles.container,
+        { borderColor, backgroundColor },
+      ]}
+    >
       <View style={styles.row}>
-        <View style={[compact ? styles.iconWrapperCompact : styles.iconWrapper, { backgroundColor: variantColor, borderColor: variantDark }]}> 
+        <View
+          style={[
+            compact ? styles.iconWrapperCompact : styles.iconWrapper,
+            { backgroundColor: variantColor, borderColor: variantDark },
+          ]}
+        >
           <FontAwesome name={icon} size={compact ? 16 : 20} color={iconColor} />
         </View>
-        <View style={styles.text}> 
-          <Text style={[compact ? styles.titleCompact : styles.title, { color: variantDark }]}>{title}</Text>
+        <View style={styles.text}>
+          <Text
+            style={[
+              compact ? styles.titleCompact : styles.title,
+              { color: variantDark },
+            ]}
+          >
+            {title}
+          </Text>
           {subtitle ? (
-            <Text style={[compact ? styles.subtitleCompact : styles.subtitle, { color: variantDark }]}>{subtitle}</Text>
+            <Text
+              style={[
+                compact ? styles.subtitleCompact : styles.subtitle,
+                { color: variantDark },
+              ]}
+            >
+              {subtitle}
+            </Text>
           ) : null}
         </View>
         {showChevron && (
-          <FontAwesome name="chevron-right" size={16} color={variantDark} style={styles.chevron} />
+          <FontAwesome
+            name="chevron-right"
+            size={16}
+            color={variantDark}
+            style={styles.chevron}
+          />
         )}
       </View>
-      {children && <View style={compact ? styles.childrenCompact : styles.children}>{children}</View>}
+      {children && (
+        <View style={compact ? styles.childrenCompact : styles.children}>
+          {children}
+        </View>
+      )}
     </View>
   );
 }

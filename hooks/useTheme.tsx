@@ -13,9 +13,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const isDark = systemColorScheme === 'dark';
 
   return (
-    <ThemeContext.Provider value={{ isDark }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ isDark }}>{children}</ThemeContext.Provider>
   );
 }
 

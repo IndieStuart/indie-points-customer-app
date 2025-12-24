@@ -10,17 +10,21 @@ interface CameraScannerProps {
 export default function CameraScanner({ onScan }: CameraScannerProps) {
   const [scanned, setScanned] = useState(false);
 
-  const handleBarCodeScanned = ({ type, data }: { type: string; data: string }) => {
+  const handleBarCodeScanned = ({
+    type,
+    data,
+  }: {
+    type: string;
+    data: string;
+  }) => {
     setScanned(true);
-    
+
     if (onScan) {
       onScan(data);
     } else {
-      Alert.alert(
-        'QR Code Scanned',
-        `Data: ${data}`,
-        [{ text: 'OK', onPress: () => setScanned(false) }]
-      );
+      Alert.alert('QR Code Scanned', `Data: ${data}`, [
+        { text: 'OK', onPress: () => setScanned(false) },
+      ]);
     }
   };
 

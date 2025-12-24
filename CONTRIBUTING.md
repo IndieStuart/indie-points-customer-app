@@ -28,21 +28,25 @@ This guide documents the conventions, patterns, and best practices used in the I
 ## File Naming Conventions
 
 ### Components
+
 - **Format**: PascalCase (e.g., `Button.tsx`, `PageContainer.tsx`)
 - **Export**: Use `export default` for the main component
 - **Location**: `/components` for reusable, `/pages` for screens
 
 ### Hooks
+
 - **Format**: camelCase with `use` prefix (e.g., `useAuth.tsx`, `useTheme.tsx`)
 - **Export**: Named exports for hooks and providers
 - **Location**: `/hooks` directory
 
 ### Constants
+
 - **Format**: camelCase for files (e.g., `theme.ts`)
 - **Export**: Named exports in UPPER_CASE (e.g., `COLORS`, `SPACING`)
 - **Location**: `/constants` directory
 
 ### Pages
+
 - **Format**: PascalCase with `Page` suffix (e.g., `HomePage.tsx`, `LoginPage.tsx`)
 - **Export**: Use `export default`
 - **Location**: `/pages` directory
@@ -59,6 +63,7 @@ This guide documents the conventions, patterns, and best practices used in the I
 6. Constants and utilities
 
 **Example:**
+
 ```tsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
@@ -71,7 +76,9 @@ import { COLORS, SPACING, TYPOGRAPHY } from '../constants/theme';
 ### Export Patterns
 
 #### Barrel Exports (index.ts files)
+
 - **Components**: Both default and named exports
+
   ```typescript
   export { Card } from './Card';
   export { default as Button } from './Button';
@@ -84,6 +91,7 @@ import { COLORS, SPACING, TYPOGRAPHY } from '../constants/theme';
   ```
 
 #### Component Files
+
 - Use `export default` for the main component
 - Named exports for TypeScript interfaces/types are optional
 - Place interface definitions above the component
@@ -92,6 +100,7 @@ import { COLORS, SPACING, TYPOGRAPHY } from '../constants/theme';
 
 1. **Strict Mode**: Always enabled (`"strict": true`)
 2. **Interfaces**: Define props interfaces with the `Props` suffix
+
    ```tsx
    interface ButtonProps {
      label: string;
@@ -101,11 +110,13 @@ import { COLORS, SPACING, TYPOGRAPHY } from '../constants/theme';
    ```
 
 3. **Type Imports**: Use `type` keyword for type-only imports
+
    ```typescript
    import { type ColorVariant } from '../constants/theme';
    ```
 
 4. **Const Assertions**: Use `as const` for constant objects
+
    ```typescript
    export const COLORS = {
      black: '#000',
@@ -118,11 +129,13 @@ import { COLORS, SPACING, TYPOGRAPHY } from '../constants/theme';
 ### Component Patterns
 
 #### Functional Components
+
 - Use arrow functions for components
 - Define props interface before the component
 - Use destructuring in function parameters
 
 **Example:**
+
 ```tsx
 interface CardProps {
   title: string;
@@ -140,11 +153,13 @@ export default function Card({ title, description }: CardProps) {
 ```
 
 #### StyleSheet Convention
+
 - Define styles at the bottom of the file using `StyleSheet.create()`
 - Reference theme constants instead of hardcoding values
 - Use inline styles only for dynamic values
 
 **Example:**
+
 ```tsx
 const styles = StyleSheet.create({
   container: {
@@ -161,6 +176,7 @@ const styles = StyleSheet.create({
 ### Theme System
 
 #### Color Usage
+
 - **Never hardcode colors** - always use `COLORS` or `COLOR_VARIANTS` from theme
 - **Dynamic theming**: Use `useColors()` hook for light/dark mode support
   ```tsx
@@ -169,24 +185,29 @@ const styles = StyleSheet.create({
   ```
 
 #### Spacing
+
 - Use `SPACING` constants (xs, sm, md, lg, xl, xxl)
 - Values range from 4px to 32px
 
 #### Typography
+
 - Use `TYPOGRAPHY` constants (h1, h2, h3, body, caption, etc.)
 - Spread typography styles: `...TYPOGRAPHY.h3`
 
 #### Border Radius
+
 - Use `BORDER_RADIUS` constants (sm, md, lg)
 - Values: 6px, 8px, 12px
 
 #### Card Styles
+
 - Use `CARD_STYLES.container` for card containers
 - Use `CARD_STYLES.iconBox` for icon wrappers with shadows
 
 ### Context and Hooks Patterns
 
 #### Context Creation
+
 ```tsx
 interface ThemeContextType {
   isDark: boolean;
@@ -197,14 +218,13 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Implementation
   return (
-    <ThemeContext.Provider value={{ isDark }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ isDark }}>{children}</ThemeContext.Provider>
   );
 }
 ```
 
 #### Hook Creation
+
 ```tsx
 export function useTheme() {
   const context = useContext(ThemeContext);
@@ -220,6 +240,7 @@ export function useTheme() {
 ### Provider Nesting Order
 
 In `App.tsx`, nest providers from outermost to innermost:
+
 ```tsx
 <ThemeProvider>
   <AuthProvider>
@@ -236,19 +257,18 @@ In `App.tsx`, nest providers from outermost to innermost:
 4. Use `<PageHeader>` for title/subtitle
 
 **CRITICAL: Page components should NEVER contain StyleSheet definitions or inline styles.**
+
 - All styling belongs in reusable components (in `/components`)
 - Pages are for composition only, not styling
 - If you need custom styling, create a new component
 
 **Example:**
+
 ```tsx
 export default function HomePage() {
   return (
     <PageContainer>
-      <PageHeader 
-        title="Page Title"
-        subtitle="Page description"
-      />
+      <PageHeader title="Page Title" subtitle="Page description" />
       {/* Page content - use styled components, no styles here */}
     </PageContainer>
   );
@@ -276,6 +296,7 @@ export default function HomePage() {
 3. Provide fallback labels when needed
 
 **Example:**
+
 ```tsx
 <Pressable
   accessibilityLabel={accessibilityLabel || label}
@@ -309,7 +330,7 @@ export default function HomePage() {
 1. **Required vs Optional**: Mark optional with `?`
 2. **Default values**: Provide in function parameters
    ```tsx
-   function Button({ variant = 'primary' }: ButtonProps)
+   function Button({ variant = 'primary' }: ButtonProps);
    ```
 3. **Variants**: Use union types for limited options
    ```typescript
@@ -319,6 +340,7 @@ export default function HomePage() {
 ### Layout Components
 
 #### Flex Component
+
 - Unified layout component for rows and columns
 - Use `direction="row"` for horizontal layouts
 - Use `direction="column"` for vertical layouts (default)
@@ -326,6 +348,7 @@ export default function HomePage() {
 - Use `columns` with `direction="row"` for multi-column layouts
 
 **Example:**
+
 ```tsx
 <Flex direction="row">
   <PointsSummaryCard />
@@ -343,6 +366,7 @@ export default function HomePage() {
 ### Documentation
 
 1. **JSDoc comments**: Add for complex functions or non-obvious behavior
+
    ```tsx
    /**
     * Hook that returns the current color scheme based on system theme
@@ -365,6 +389,7 @@ export default function HomePage() {
 ## Common Patterns
 
 ### Conditional Rendering
+
 ```tsx
 if (loading) {
   return <ActivityIndicator />;
@@ -378,6 +403,7 @@ return <MainContent />;
 ```
 
 ### Effect Hook for Auth State
+
 ```tsx
 useEffect(() => {
   // Get initial session
@@ -387,7 +413,9 @@ useEffect(() => {
   });
 
   // Listen for auth changes
-  const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange((_event, session) => {
     setSession(session);
   });
 
@@ -396,6 +424,7 @@ useEffect(() => {
 ```
 
 ### Style Composition
+
 ```tsx
 <View style={[styles.base, isActive && styles.active]} />
 <Text style={[styles.text, { color: dynamicColor }]} />
@@ -442,6 +471,7 @@ useEffect(() => {
 ## Summary
 
 When contributing to this codebase:
+
 1. Match the existing TypeScript/React Native patterns
 2. Use the theme system for all styling values
 3. Follow the established file structure and naming

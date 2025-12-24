@@ -20,28 +20,32 @@ const TOUR_STEPS: TourStep[] = [
     id: 1,
     screen: 'Home',
     title: 'Welcome to Indie Points!',
-    description: 'This is your home screen where you can see your points summary and history.',
+    description:
+      'This is your home screen where you can see your points summary and history.',
     icon: 'home',
   },
   {
     id: 2,
     screen: 'Points',
     title: 'Your Points',
-    description: 'This is your individual Indie Points loyalty card, which you can show to businesses to earn and redeem points.',
+    description:
+      'This is your individual Indie Points loyalty card, which you can show to businesses to earn and redeem points.',
     icon: 'gift',
   },
   {
     id: 3,
     screen: 'Scan',
     title: 'Scan QR Codes',
-    description: 'This page allows you to scan business QR codes to earn bonus points.',
+    description:
+      'This page allows you to scan business QR codes to earn bonus points.',
     icon: 'camera',
   },
   {
     id: 4,
     screen: 'History',
     title: 'Transaction History',
-    description: 'See all your past transactions, including points earned and rewards redeemed.',
+    description:
+      'See all your past transactions, including points earned and rewards redeemed.',
     icon: 'file-text-o',
   },
   {
@@ -70,9 +74,10 @@ export function TourProvider({ children }: { children: ReactNode }) {
   const [isActive, setIsActive] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
-  const currentTourStep = isActive && currentStep < TOUR_STEPS.length 
-    ? TOUR_STEPS[currentStep] 
-    : null;
+  const currentTourStep =
+    isActive && currentStep < TOUR_STEPS.length
+      ? TOUR_STEPS[currentStep]
+      : null;
 
   const startTour = () => {
     setIsActive(true);
