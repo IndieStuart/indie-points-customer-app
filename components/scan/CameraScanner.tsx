@@ -32,6 +32,7 @@ export default function CameraScanner({ onScan }: CameraScannerProps) {
     <View style={styles.container}>
       <View style={styles.scannerWrapper}>
         <CameraView
+          testID="camera-view"
           style={styles.camera}
           facing="back"
           onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}

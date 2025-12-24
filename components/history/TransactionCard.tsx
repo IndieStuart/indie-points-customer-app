@@ -65,7 +65,11 @@ export default function TransactionCard({
   );
 
   if (onPress) {
-    return <Pressable onPress={handlePress}>{CardContent}</Pressable>;
+    return (
+      <Pressable onPress={handlePress} accessibilityRole="button">
+        {CardContent}
+      </Pressable>
+    );
   }
 
   return CardContent;

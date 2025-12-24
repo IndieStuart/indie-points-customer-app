@@ -20,7 +20,7 @@ export default function BusinessCard({ business, onPress }: BusinessCardProps) {
   };
 
   return (
-    <Pressable onPress={handlePress}>
+    <Pressable onPress={handlePress} accessibilityRole="button">
       <CardWithIcon
         compact={true}
         icon="shopping-bag"

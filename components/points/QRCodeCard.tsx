@@ -25,8 +25,8 @@ export function QRCodeCard({ userId }: QRCodeCardProps) {
   const logoSize = Math.max(0, Math.floor(qrSize * 0.2));
 
   return (
-    <View style={styles.container}>
-      <View style={styles.qrWrapper} onLayout={onLayout}>
+    <View style={styles.container} testID="qr-container">
+      <View style={styles.qrWrapper} onLayout={onLayout} testID="qr-wrapper">
         {qrSize > 0 && (
           <QRCode
             value={userId}
