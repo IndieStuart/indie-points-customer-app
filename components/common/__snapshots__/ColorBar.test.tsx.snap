@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorBar renders with primary, secondary, and tertiary variants 1`] = `
+<View
+  style={
+    {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "borderRadius": 8,
+          "borderWidth": 1,
+          "height": 8,
+          "width": "100%",
+        },
+        {
+          "backgroundColor": "#3182CE",
+          "borderColor": "#2C5282",
+        },
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`ColorBar renders with primary, secondary, and tertiary variants 2`] = `
+<View
+  style={
+    {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "borderRadius": 8,
+          "borderWidth": 1,
+          "height": 8,
+          "width": "100%",
+        },
+        {
+          "backgroundColor": "#D69E2E",
+          "borderColor": "#744210",
+        },
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`ColorBar renders with primary, secondary, and tertiary variants 3`] = `
+<View
+  style={
+    {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "borderRadius": 8,
+          "borderWidth": 1,
+          "height": 8,
+          "width": "100%",
+        },
+        {
+          "backgroundColor": "#E53E3E",
+          "borderColor": "#742A2A",
+        },
+      ]
+    }
+  />
+</View>
+`;

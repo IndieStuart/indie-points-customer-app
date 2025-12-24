@@ -59,3 +59,10 @@ jest.mock('./lib/supabase', () => ({
     },
   },
 }));
+
+// Mock @expo/vector-icons/FontAwesome to avoid native module errors in Jest
+jest.mock('@expo/vector-icons/FontAwesome', () => {
+  const React = require('react');
+  return ({ name, color, size }) =>
+    React.createElement('IconMock', { name, color, size });
+});

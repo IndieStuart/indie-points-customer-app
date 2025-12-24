@@ -19,7 +19,11 @@ export default function PageHeader({
   return (
     <View style={styles.container}>
       {onBack && (
-        <Pressable onPress={onBack} style={styles.backButton}>
+        <Pressable
+          testID="back-button"
+          onPress={onBack}
+          style={styles.backButton}
+        >
           <FontAwesome name="arrow-left" size={20} />
         </Pressable>
       )}
