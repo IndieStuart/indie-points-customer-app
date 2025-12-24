@@ -10,7 +10,7 @@ import {
 } from './hooks';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
-import BottomTabNavigator from './components/BottomTabNavigator';
+import BottomTabNavigator from './components/common/BottomTabNavigator';
 
 function AppContent() {
   const { session, loading } = useAuth();

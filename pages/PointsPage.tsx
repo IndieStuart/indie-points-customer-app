@@ -5,8 +5,8 @@ import {
   PageHeader,
   InstructionList,
   type InstructionStep,
+  QRCodeCard,
 } from '../components';
-import { QRCodeCard } from '../components/QRCodeCard';
 
 export default function PointsPage() {
   const { session } = useAuth();

@@ -1,7 +1,12 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
-import { spacing, borderRadius, typography, shadows } from '../constants/theme';
-import { useColors, useHapticFeedback } from '../hooks';
+import {
+  spacing,
+  borderRadius,
+  typography,
+  shadows,
+} from '../../constants/theme';
+import { useColors, useHapticFeedback } from '../../hooks';
 
 interface TabButtonProps {
   active: boolean;

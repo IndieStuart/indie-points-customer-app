@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Alert, StyleSheet } from 'react-native';
 import { CameraView } from 'expo-camera';
-import { borderRadius } from '../constants/theme';
+import { borderRadius } from '../../constants/theme';
 
 interface CameraScannerProps {
   onScan?: (data: string) => void;

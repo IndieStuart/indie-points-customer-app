@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { spacing, lightTheme } from '../constants/theme';
+import { spacing, lightTheme } from '../../constants/theme';
 
 interface PageContainerProps {
   children: React.ReactNode;

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Modal, View, Text, StyleSheet } from 'react-native';
-import { useTour } from '../hooks/useTour';
-import { useColors } from '../hooks';
+import { useTour } from '../../hooks/useTour';
+import { useColors } from '../../hooks';
 import { useNavigation } from '@react-navigation/native';
 import CardWithIcon from './CardWithIcon';
 import Button from './Button';
-import { spacing, typography } from '../constants/theme';
+import { spacing, typography } from '../../constants/theme';
 
 export default function TourOverlay() {
   const { isActive, currentStep, totalSteps, currentTourStep, nextStep } =

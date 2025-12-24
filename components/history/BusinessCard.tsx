@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import CardWithIcon from './CardWithIcon';
-import { typography } from '../constants/theme';
-import { useColors, useHapticFeedback } from '../hooks';
-import type { Business } from '../types';
+import CardWithIcon from '../common/CardWithIcon';
+import { typography } from '../../constants/theme';
+import { useColors, useHapticFeedback } from '../../hooks';
+import type { Business } from '../../types';
 
 interface BusinessCardProps {
   business: Business;

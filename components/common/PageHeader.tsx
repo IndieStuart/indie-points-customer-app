@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { ColorBar } from './ColorBar';
 import Flex from './Flex';
-import { spacing, typography, lightTheme } from '../constants/theme';
+import { spacing, typography, lightTheme } from '../../constants/theme';
 
 interface PageHeaderProps {
   onBack?: () => void;

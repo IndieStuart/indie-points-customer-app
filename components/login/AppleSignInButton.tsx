@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, Platform, View, StyleSheet } from 'react-native';
 import * as AppleAuthentication from 'expo-apple-authentication';
-import { borderRadius, shadows } from '../constants/theme';
+import { borderRadius, shadows } from '../../constants/theme';
 
 interface AppleSignInButtonProps {
   loading?: boolean;

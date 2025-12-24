@@ -6,8 +6,8 @@ import {
   InstructionList,
   CameraScanner,
   CameraPermissionRequest,
+  type InstructionStep,
 } from '../components';
-import type { InstructionStep } from '../components/InstructionList';
 
 const instructions: InstructionStep[] = [
   {

@@ -1,7 +1,7 @@
 import React from 'react';
-import CardWithIcon from './CardWithIcon';
-import Button from './Button';
-import { useTour } from '../hooks/useTour';
+import CardWithIcon from '../common/CardWithIcon';
+import Button from '../common/Button';
+import { useTour } from '../../hooks/useTour';
 
 export default function TakeTourCard() {
   const { startTour } = useTour();

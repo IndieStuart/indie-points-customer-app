@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import CardWithIcon from './CardWithIcon';
-import { typography } from '../constants/theme';
-import { useColors } from '../hooks';
-import type { Reward } from '../types';
+import { typography } from '../../constants/theme';
+import { useColors } from '../../hooks';
+import type { Reward } from '../../types';
 
 interface RewardCardProps {
   reward: Reward;
@@ -35,6 +35,7 @@ export default function RewardCard({ reward }: RewardCardProps) {
             Status:
           </Text>
           <Text style={[styles.rewardValue, { color: colors.text }]}>
+            {' '}
             {reward.available ? 'Available' : 'Not enough points'}
           </Text>
         </View>

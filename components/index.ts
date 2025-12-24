@@ -1,27 +1,30 @@
-// Centralized component exports
-export { Card } from './Card';
-export { ErrorMessage } from './ErrorMessage';
-export { ColorBar } from './ColorBar';
-export { QRCodeCard } from './QRCodeCard';
-export { InstructionList, type InstructionStep } from './InstructionList';
-export { default as PageContainer } from './PageContainer';
-export { default as PageHeader } from './PageHeader';
-export { default as Button } from './Button';
-export { default as InfoCard } from './InfoCard';
-export { default as CardWithIcon } from './CardWithIcon';
-export { default as AppleSignInButton } from './AppleSignInButton';
-export { default as PointsSummaryCard } from './PointsSummaryCard';
-export { default as FeedbackCard } from './FeedbackCard';
-export { default as UserCard } from './UserCard';
-export { default as TakeTourCard } from './TakeTourCard';
-export { default as CloseAccountCard } from './CloseAccountCard';
-export { default as Flex } from './Flex';
-export { default as EmptyState } from './EmptyState';
-export { default as CameraScanner } from './CameraScanner';
-export { default as CameraPermissionRequest } from './CameraPermissionRequest';
-export { default as TourOverlay } from './TourOverlay';
-export { default as TabButton } from './TabButton';
-export { default as BusinessCard } from './BusinessCard';
-export { default as TransactionCard } from './TransactionCard';
-export { default as RewardCard } from './RewardCard';
-export { default as BusinessDetailView } from './BusinessDetailView';
+// Centralized component exports (grouped paths)
+export { Card } from './common/Card';
+export { ErrorMessage } from './common/ErrorMessage';
+export { ColorBar } from './common/ColorBar';
+export { QRCodeCard } from './points/QRCodeCard';
+export {
+  InstructionList,
+  type InstructionStep,
+} from './common/InstructionList';
+export { default as PageContainer } from './common/PageContainer';
+export { default as PageHeader } from './common/PageHeader';
+export { default as Button } from './common/Button';
+export { default as InfoCard } from './common/InfoCard';
+export { default as CardWithIcon } from './common/CardWithIcon';
+export { default as AppleSignInButton } from './login/AppleSignInButton';
+export { default as PointsSummaryCard } from './home/PointsSummaryCard';
+export { default as FeedbackCard } from './home/FeedbackCard';
+export { default as UserCard } from './settings/UserCard';
+export { default as TakeTourCard } from './settings/TakeTourCard';
+export { default as CloseAccountCard } from './settings/CloseAccountCard';
+export { default as Flex } from './common/Flex';
+export { default as EmptyState } from './common/EmptyState';
+export { default as CameraScanner } from './scan/CameraScanner';
+export { default as CameraPermissionRequest } from './scan/CameraPermissionRequest';
+export { default as TourOverlay } from './common/TourOverlay';
+export { default as TabButton } from './history/TabButton';
+export { default as BusinessCard } from './history/BusinessCard';
+export { default as TransactionCard } from './history/TransactionCard';
+export { default as RewardCard } from './common/RewardCard';
+export { default as BusinessDetailView } from './history/BusinessDetailView';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Button } from './';
+import Button from '../common/Button';
 
 interface CameraPermissionRequestProps {
   onRequestPermission: () => void;

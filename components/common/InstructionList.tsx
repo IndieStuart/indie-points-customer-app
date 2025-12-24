@@ -1,7 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { lightTheme, shadows, spacing, typography } from '../constants/theme';
-import { useColors } from '../hooks';
+import {
+  lightTheme,
+  shadows,
+  spacing,
+  typography,
+} from '../../constants/theme';
+import { useColors } from '../../hooks';
 
 type Variant = 'primary' | 'secondary' | 'tertiary';
 

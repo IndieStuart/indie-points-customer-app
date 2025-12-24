@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import CardWithIcon from './CardWithIcon';
-import Button from './Button';
+import CardWithIcon from '../common/CardWithIcon';
+import Button from '../common/Button';
 
 export default function CloseAccountCard() {
   const handleCloseAccount = () => {

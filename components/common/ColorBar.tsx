@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { spacing, borderRadius } from '../constants/theme';
-import { useColors } from '../hooks';
+import { spacing, borderRadius } from '../../constants/theme';
+import { useColors } from '../../hooks';
 
 type ColorVariant = 'primary' | 'secondary' | 'tertiary';
 

@@ -7,8 +7,8 @@ import {
   borderRadius,
   shadows,
   typography,
-} from '../constants/theme';
-import { useColors } from '../hooks';
+} from '../../constants/theme';
+import { useColors } from '../../hooks';
 
 type Variant = 'primary' | 'secondary' | 'tertiary';
 

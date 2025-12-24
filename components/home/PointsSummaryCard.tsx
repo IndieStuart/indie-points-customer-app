@@ -1,7 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextStyle } from 'react-native';
-import { borderRadius, shadows, spacing, typography } from '../constants/theme';
-import { useColors } from '../hooks';
+import {
+  borderRadius,
+  shadows,
+  spacing,
+  typography,
+} from '../../constants/theme';
+import { useColors } from '../../hooks';
 
 type Variant = 'primary' | 'secondary' | 'tertiary';
 

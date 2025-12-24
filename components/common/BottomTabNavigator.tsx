@@ -2,15 +2,15 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { useHapticFeedback } from '../hooks';
+import { useHapticFeedback } from '../../hooks';
 import TourOverlay from './TourOverlay';
 
 // Import pages
-import HomePage from '../pages/HomePage';
-import PointsPage from '../pages/PointsPage';
-import ScanPage from '../pages/ScanPage';
-import HistoryPage from '../pages/HistoryPage';
-import SettingsPage from '../pages/SettingsPage';
+import HomePage from '../../pages/HomePage';
+import PointsPage from '../../pages/PointsPage';
+import ScanPage from '../../pages/ScanPage';
+import HistoryPage from '../../pages/HistoryPage';
+import SettingsPage from '../../pages/SettingsPage';
 
 const Tab = createBottomTabNavigator();
 

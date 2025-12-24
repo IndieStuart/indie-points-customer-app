@@ -1,7 +1,7 @@
 import React from 'react';
-import CardWithIcon from './CardWithIcon';
-import Button from './Button';
-import { useAuth } from '../hooks';
+import CardWithIcon from '../common/CardWithIcon';
+import Button from '../common/Button';
+import { useAuth } from '../../hooks';
 
 export default function UserCard() {
   const { session, signOut } = useAuth();

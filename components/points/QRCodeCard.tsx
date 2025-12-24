@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { LayoutChangeEvent, View, StyleSheet } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import { borderRadius, spacing } from '../constants/theme';
-const appIcon = require('../assets/images/icon.png');
+import { borderRadius, spacing } from '../../constants/theme';
+const appIcon = require('../../assets/images/icon.png');
 
 interface QRCodeCardProps {
   userId: string;

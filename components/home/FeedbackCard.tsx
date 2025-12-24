@@ -1,7 +1,7 @@
 import React from 'react';
-import { useFeedback } from '../hooks';
-import Button from './Button';
-import CardWithIcon from './CardWithIcon';
+import { useFeedback } from '../../hooks';
+import Button from '../common/Button';
+import CardWithIcon from '../common/CardWithIcon';
 
 export default function FeedbackCard() {
   const { sendFeedback } = useFeedback();

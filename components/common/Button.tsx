@@ -1,7 +1,12 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
-import { spacing, borderRadius, shadows, typography } from '../constants/theme';
-import { useColors } from '../hooks';
+import {
+  spacing,
+  borderRadius,
+  shadows,
+  typography,
+} from '../../constants/theme';
+import { useColors } from '../../hooks';
 
 interface ButtonProps {
   label: string;

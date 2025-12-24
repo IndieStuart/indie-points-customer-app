@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import Flex from './Flex';
+import Flex from '../common/Flex';
 import TabButton from './TabButton';
 import TransactionCard from './TransactionCard';
-import RewardCard from './RewardCard';
-import type { Transaction, Reward } from '../types';
-import { spacing, typography } from '../constants/theme';
-import { useColors } from '../hooks';
+import RewardCard from '../common/RewardCard';
+import type { Transaction, Reward } from '../../types';
+import { spacing, typography } from '../../constants/theme';
+import { useColors } from '../../hooks';
 
 type DetailTabType = 'transactions' | 'rewards';
 
