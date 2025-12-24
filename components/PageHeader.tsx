@@ -1,20 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { ColorBar } from './ColorBar';
 import Flex from './Flex';
 import { spacing, typography, lightTheme } from '../constants/theme';
 
 interface PageHeaderProps {
+  onBack?: () => void;
   subtitle?: string;
   title: string;
 }
 
 export default function PageHeader({ 
+  onBack,
   subtitle,
   title,
 }: PageHeaderProps) {
   return (
     <View style={styles.container}>
+      {onBack && (
+        <Pressable onPress={onBack} style={styles.backButton}>
+          <FontAwesome name="arrow-left" size={20} />
+        </Pressable>
+      )}
       <Text style={styles.title}>{title}</Text>
       <Flex direction="row" columns={3} gap={8} style={styles.colorBars}>
         <ColorBar variant="primary" />
@@ -27,6 +35,12 @@ export default function PageHeader({
 }
 
 const styles = StyleSheet.create({
+  backButton: {
+    left: 0,
+    padding: spacing.sm,
+    position: 'absolute',
+    top: 0,
+  },
   colorBars: {
     marginBottom: spacing.md,
   },

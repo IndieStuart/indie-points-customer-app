@@ -17,6 +17,7 @@ export default function InfoCard({
   return (
     <CardWithIcon
       icon={icon}
+      variant="primary"
       title={title}
       subtitle={subtitle}
     >

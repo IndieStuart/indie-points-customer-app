@@ -1,21 +1,11 @@
-import React, { useState } from 'react';
-import * as Haptics from 'expo-haptics';
+import React from 'react';
 import { useAuth } from '../hooks';
 import { PageContainer, PageHeader, InstructionList, type InstructionStep, Flex } from '../components';
 import { QRCodeCard } from '../components/QRCodeCard';
 
 export default function PointsPage() {
   const { session } = useAuth();
-  const [qrKey, setQrKey] = useState(0);
-
-  const handleRegenerate = async () => {
-    try {
-      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    } catch (error) {
-      console.debug('Haptic feedback not available:', error);
-    }
-    setQrKey(prev => prev + 1);
-  };
+  
 
   const userId = session?.user?.id || 'guest-user';
 
@@ -46,17 +36,11 @@ export default function PointsPage() {
         title="Points"
         subtitle="Your loyalty card"
       />
-      <Flex gap={16}>
-        <QRCodeCard 
-          key={qrKey}
-          userId={userId} 
-          onRegenerate={handleRegenerate} 
-        />
-        <InstructionList
-          steps={steps}
-          title="How to earn points"
-        />
-      </Flex>
+      <QRCodeCard userId={userId} />
+      <InstructionList
+        steps={steps}
+        title="How to earn points"
+      />
     </PageContainer>
   );
 }

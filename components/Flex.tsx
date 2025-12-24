@@ -49,7 +49,11 @@ export default function Flex({
   // Column layout with gap spacing
   return (
     <View style={[styles.column, style]}>
-      {children}
+      {items.map((child, idx) => (
+        <View key={`flex-col-${idx}`} style={idx < items.length - 1 ? { marginBottom: gap } : undefined}>
+          {child}
+        </View>
+      ))}
     </View>
   );
 }

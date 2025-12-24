@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     borderRadius: borderRadius.lg,
     borderWidth: 4,
-    marginBottom: spacing.md,
     padding: spacing.md,
     width: '100%',
   },
