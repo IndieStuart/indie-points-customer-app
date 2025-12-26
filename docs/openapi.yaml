@@ -33,6 +33,9 @@ paths:
               schema:
                 type: object
                 properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the customer profile
                   email:
                     type: string
                   points:
@@ -50,6 +53,43 @@ paths:
           description: Customer profile not found
         '500':
           description: Failed to fetch points summary
+  /functions/v1/api_v1_customers_businesses_get:
+    get:
+      summary: Get businesses summary for a customer
+      operationId: getCustomerBusinesses
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of businesses the customer has interacted with
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  businesses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        businessId:
+                          type: string
+                          description: Unique identifier for the business
+                        businessName:
+                          type: string
+                        lastTransactionDate:
+                          type: string
+                          format: date-time
+                        totalSpent:
+                          type: number
+                        totalPointsEarned:
+                          type: integer
+                        activePointsEarned:
+                          type: integer
+        '401':
+          description: Unauthorized
+        '500':
+          description: Failed to fetch businesses summary
 components:
   securitySchemes:
     bearerAuth:

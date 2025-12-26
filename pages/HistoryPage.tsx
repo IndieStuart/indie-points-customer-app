@@ -10,11 +10,11 @@ import {
 } from '../components';
 import type { Business } from '../types';
 import {
-  FAKE_BUSINESSES,
   FAKE_TRANSACTIONS,
   FAKE_BUSINESS_TRANSACTIONS,
   FAKE_REWARDS,
 } from '../lib/fakeData';
+import { useCustomerBusinesses } from '../hooks/useCustomerBusinesses';
 import { spacing } from '../constants/theme';
 
 type TabType = 'businesses' | 'transactions';
@@ -24,6 +24,7 @@ export default function HistoryPage() {
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(
     null,
   );
+  const businesses = useCustomerBusinesses();
 
   if (selectedBusiness) {
     const transactions = FAKE_BUSINESS_TRANSACTIONS[selectedBusiness.id] || [];
@@ -66,7 +67,7 @@ export default function HistoryPage() {
 
       {activeTab === 'businesses' ? (
         <Flex gap={spacing.sm}>
-          {FAKE_BUSINESSES.map((business) => (
+          {(businesses ?? []).map((business) => (
             <BusinessCard
               key={business.id}
               business={business}
@@ -77,7 +78,7 @@ export default function HistoryPage() {
       ) : (
         <Flex gap={spacing.sm}>
           {FAKE_TRANSACTIONS.map((transaction) => {
-            const business = FAKE_BUSINESSES.find(
+            const business = (businesses ?? []).find(
               (b) => b.id === transaction.businessId,
             );
             return (
