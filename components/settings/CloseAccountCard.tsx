@@ -1,11 +1,15 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { useAlert } from '../../hooks/useAlert';
 import CardWithIcon from '../common/CardWithIcon';
 import Button from '../common/Button';
+import { useCloseAccount } from '../../hooks/useCloseAccount';
 
 export default function CloseAccountCard() {
+  const { closeAccount } = useCloseAccount();
+  const { alert } = useAlert();
+
   const handleCloseAccount = () => {
-    Alert.alert(
+    alert(
       'Close Account',
       'This action is irreversible. Are you sure you want to close your account?',
       [
@@ -16,13 +20,7 @@ export default function CloseAccountCard() {
         {
           text: 'Close Account',
           style: 'destructive',
-          onPress: () => {
-            // TODO: Implement account closure
-            Alert.alert(
-              'Coming Soon',
-              'Account closure feature is coming soon!',
-            );
-          },
+          onPress: closeAccount,
         },
       ],
     );
