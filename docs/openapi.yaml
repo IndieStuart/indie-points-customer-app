@@ -19,6 +19,37 @@ paths:
           description: Customer profile deleted
         '401':
           description: Unauthorized
+  /functions/v1/api_v1_customers_profile_get:
+    get:
+      summary: Get customer profile and points summary
+      operationId: getCustomerProfile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Customer profile and points summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                  points:
+                    type: object
+                    properties:
+                      totalEarned:
+                        type: integer
+                      totalActive:
+                        type: integer
+                      totalRedeemed:
+                        type: integer
+        '401':
+          description: Unauthorized
+        '404':
+          description: Customer profile not found
+        '500':
+          description: Failed to fetch points summary
 components:
   securitySchemes:
     bearerAuth:

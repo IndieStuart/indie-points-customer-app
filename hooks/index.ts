@@ -4,3 +4,4 @@ export { useAuthError } from './useAuthError';
 export { AuthProvider, useAuth } from './useAuth';
 export { ThemeProvider, useTheme, useColors } from './useTheme';
 export { TourProvider, useTour } from './useTour';
+export { useCustomerProfile } from './useCustomerProfile';
