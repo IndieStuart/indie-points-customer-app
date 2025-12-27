@@ -73,6 +73,24 @@ const getScheme = () => {
   return 'customer-mobile-app';
 };
 
+const getGooglePluginConfig = () => {
+  const androidClientId = process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID;
+  const iosUrlScheme = process.env.EXPO_PUBLIC_GOOGLE_IOS_REVERSED_CLIENT_ID;
+  const isEasBuild = process.env.EAS_BUILD === 'true';
+
+  // On local (non-EAS) runs, skip plugin config if env vars aren’t set
+  if (!androidClientId || !iosUrlScheme) {
+    if (!isEasBuild) {
+      return null;
+    }
+    throw new Error(
+      'Missing Google Sign-In env vars: set EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID and EXPO_PUBLIC_GOOGLE_IOS_REVERSED_CLIENT_ID.',
+    );
+  }
+
+  return { androidClientId, iosUrlScheme };
+};
+
 export default ({ config }) => ({
   ...config,
   icon: getAppIcon(),
@@ -92,4 +110,10 @@ export default ({ config }) => ({
     ...config.android,
     package: getUniqueIdentifier(),
   },
+  plugins: [
+    ...(config.plugins || []),
+    ...(getGooglePluginConfig()
+      ? [['@react-native-google-signin/google-signin', getGooglePluginConfig()]]
+      : []),
+  ],
 });

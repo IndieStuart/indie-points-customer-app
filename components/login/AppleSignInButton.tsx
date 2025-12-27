@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Platform, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { borderRadius, shadows } from '../../constants/theme';
 
@@ -12,10 +12,6 @@ export default function AppleSignInButton({
   loading = false,
   onPress,
 }: AppleSignInButtonProps) {
-  if (Platform.OS !== 'ios') {
-    return null;
-  }
-
   const handlePress = () => {
     if (loading) return;
     onPress();

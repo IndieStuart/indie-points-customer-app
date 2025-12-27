@@ -37,6 +37,28 @@ jest.mock('expo-apple-authentication', () => ({
   },
 }));
 
+jest.mock('@react-native-google-signin/google-signin', () => ({
+  GoogleSignin: {
+    configure: jest.fn(),
+    signIn: jest.fn(),
+    signOut: jest.fn(),
+    isSignedIn: jest.fn(() => Promise.resolve(false)),
+    getCurrentUser: jest.fn(),
+    getTokens: jest.fn(),
+  },
+  GoogleSigninButton: {
+    Size: {
+      Icon: 1,
+      Standard: 0,
+      Wide: 2,
+    },
+    Color: {
+      Light: 1,
+      Dark: 0,
+    },
+  },
+}));
+
 jest.mock('@react-native-async-storage/async-storage', () => ({
   setItem: jest.fn(),
   getItem: jest.fn(),

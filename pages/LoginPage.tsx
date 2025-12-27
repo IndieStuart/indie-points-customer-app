@@ -1,20 +1,35 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import {
   Card,
   ErrorMessage,
   PageContainer,
   PageHeader,
   Flex,
-  AppleSignInButton,
 } from '../components';
 import { useAuth, useAuthError } from '../hooks';
 
+let AppleSignInButton: any = null;
+if (Platform.OS === 'ios') {
+  AppleSignInButton = require('../components/login/AppleSignInButton').default;
+}
+
+let GoogleSignInButton: any = null;
+if (Platform.OS === 'android') {
+  GoogleSignInButton =
+    require('../components/login/GoogleSignInButton').default;
+}
+
 export default function LoginPage() {
   const { signInWithApple } = useAuth();
-  const { error, isLoading, withLoading } = useAuthError();
+  const { error, isLoading, withLoading, handleAuthError } = useAuthError();
 
   const handleAppleSignIn = async () => {
     await withLoading(() => signInWithApple());
+  };
+
+  const handleGoogleError = (errorMessage: string) => {
+    handleAuthError(errorMessage);
   };
 
   return (
@@ -40,8 +55,14 @@ export default function LoginPage() {
           variant="tertiary"
         />
       </Flex>
+
       {error && <ErrorMessage message={error} />}
-      <AppleSignInButton onPress={handleAppleSignIn} loading={isLoading} />
+
+      {AppleSignInButton && (
+        <AppleSignInButton onPress={handleAppleSignIn} loading={isLoading} />
+      )}
+
+      {GoogleSignInButton && <GoogleSignInButton onError={handleGoogleError} />}
     </PageContainer>
   );
 }

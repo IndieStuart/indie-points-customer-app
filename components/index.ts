@@ -12,7 +12,6 @@ export { default as PageHeader } from './common/PageHeader';
 export { default as Button } from './common/Button';
 export { default as InfoCard } from './common/InfoCard';
 export { default as CardWithIcon } from './common/CardWithIcon';
-export { default as AppleSignInButton } from './login/AppleSignInButton';
 export { default as PointsSummaryCard } from './home/PointsSummaryCard';
 export { default as FeedbackCard } from './home/FeedbackCard';
 export { default as UserCard } from './settings/UserCard';
