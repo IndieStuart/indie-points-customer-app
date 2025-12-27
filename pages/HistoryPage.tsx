@@ -7,13 +7,11 @@ import {
   TransactionCard,
   BusinessDetailView,
   Flex,
+  EmptyState,
 } from '../components';
 import type { Business } from '../types';
-import {
-  FAKE_TRANSACTIONS,
-  FAKE_BUSINESS_TRANSACTIONS,
-  FAKE_REWARDS,
-} from '../lib/fakeData';
+import { FAKE_BUSINESS_TRANSACTIONS, FAKE_REWARDS } from '../lib/fakeData';
+import { useCustomerTransactions } from '../hooks/useCustomerTransactions';
 import { useCustomerBusinesses } from '../hooks/useCustomerBusinesses';
 import { spacing } from '../constants/theme';
 
@@ -24,7 +22,20 @@ export default function HistoryPage() {
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(
     null,
   );
-  const businesses = useCustomerBusinesses();
+  let businesses: Business[] = [];
+  let transactions: any[] = [];
+  let businessesError: Error | null = null;
+  let transactionsError: Error | null = null;
+  try {
+    businesses = useCustomerBusinesses() ?? [];
+  } catch (e) {
+    businessesError = e instanceof Error ? e : new Error('Unknown error');
+  }
+  try {
+    transactions = useCustomerTransactions() ?? [];
+  } catch (e) {
+    transactionsError = e instanceof Error ? e : new Error('Unknown error');
+  }
 
   if (selectedBusiness) {
     const transactions = FAKE_BUSINESS_TRANSACTIONS[selectedBusiness.id] || [];
@@ -66,18 +77,52 @@ export default function HistoryPage() {
       </Flex>
 
       {activeTab === 'businesses' ? (
-        <Flex gap={spacing.sm}>
-          {(businesses ?? []).map((business) => (
-            <BusinessCard
-              key={business.id}
-              business={business}
-              onPress={() => setSelectedBusiness(business)}
+        businessesError ? (
+          <Flex>
+            <EmptyState
+              icon="exclamation-circle"
+              title="Error"
+              description={businessesError.message}
             />
-          ))}
+          </Flex>
+        ) : businesses.length === 0 ? (
+          <Flex>
+            <EmptyState
+              icon="building-o"
+              title="No businesses"
+              description="You have not visited any businesses yet."
+            />
+          </Flex>
+        ) : (
+          <Flex gap={spacing.sm}>
+            {businesses.map((business) => (
+              <BusinessCard
+                key={business.id}
+                business={business}
+                onPress={() => setSelectedBusiness(business)}
+              />
+            ))}
+          </Flex>
+        )
+      ) : transactionsError ? (
+        <Flex>
+          <EmptyState
+            icon="exclamation-circle"
+            title="Error"
+            description={transactionsError.message}
+          />
+        </Flex>
+      ) : transactions.length === 0 ? (
+        <Flex>
+          <EmptyState
+            icon="history"
+            title="No transactions"
+            description="You have not made any transactions yet."
+          />
         </Flex>
       ) : (
         <Flex gap={spacing.sm}>
-          {FAKE_TRANSACTIONS.map((transaction) => {
+          {transactions.map((transaction) => {
             const business = (businesses ?? []).find(
               (b) => b.id === transaction.businessId,
             );

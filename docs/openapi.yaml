@@ -42,7 +42,9 @@ paths:
                     type: object
                     properties:
                       totalEarned:
-                        type: integer
+                        businessName:
+                          type: string
+                          description: Name of the business
                       totalActive:
                         type: integer
                       totalRedeemed:
@@ -90,6 +92,58 @@ paths:
           description: Unauthorized
         '500':
           description: Failed to fetch businesses summary
+  /functions/v1/api_v1_customers_transactions_get:
+    get:
+      summary: Get paginated transactions for a customer
+      operationId: getCustomerTransactions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: Page number (1-based)
+          required: false
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Paginated list of transactions for the customer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        transactionId:
+                          type: string
+                          description: Unique identifier for the transaction
+                        businessId:
+                          type: string
+                        businessName:
+                          type: string
+                          description: Name of the business
+                        amountSpent:
+                          type: number
+                        pointsAwarded:
+                          type: integer
+                        createdAt:
+                          type: string
+                          format: date-time
+                        type:
+                          type: string
+                  page:
+                    type: integer
+                  pageSize:
+                    type: integer
+        '401':
+          description: Unauthorized
+        '500':
+          description: Failed to fetch transactions
 components:
   securitySchemes:
     bearerAuth:
@@ -97,27 +151,3 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    CustomerProfile:
-      type: object
-      properties:
-        id:
-          type: string
-        userId:
-          type: string
-        onboardingCompleted:
-          type: boolean
-        onboardingStep:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-      required:
-        - id
-        - userId
-        - onboardingCompleted
-        - onboardingStep
-        - createdAt
-        - updatedAt

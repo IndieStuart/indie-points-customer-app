@@ -47,7 +47,11 @@ export default function TransactionCard({
             Amount:
           </Text>
           <Text style={[styles.transactionValue, { color: colors.text }]}>
-            £{transaction.amount.toFixed(2)}
+            £
+            {typeof transaction.amountSpent === 'number' &&
+            !isNaN(transaction.amountSpent)
+              ? transaction.amountSpent.toFixed(2)
+              : '--'}
           </Text>
         </View>
         <View style={styles.transactionRow}>
@@ -57,7 +61,10 @@ export default function TransactionCard({
             Points {transaction.type === 'earn' ? 'earned' : 'redeemed'}:
           </Text>
           <Text style={[styles.transactionValue, { color: colors.text }]}>
-            {transaction.points}
+            {typeof transaction.pointsAwarded === 'number' &&
+            !isNaN(transaction.pointsAwarded)
+              ? transaction.pointsAwarded
+              : '--'}
           </Text>
         </View>
       </View>

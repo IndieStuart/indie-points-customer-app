@@ -9,8 +9,8 @@ describe('TransactionCard', () => {
     id: 't1',
     businessId: 'b1',
     businessName: 'Test Business',
-    amount: 42.5,
-    points: 15,
+    amountSpent: 42.5,
+    pointsAwarded: 15,
     date: '2023-12-24',
     type: 'earn',
   };
